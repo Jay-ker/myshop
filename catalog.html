@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Catalog</title>
+  <link rel="stylesheet" href="catalog.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 My Book Catalog</h1>
+    <p>Find and explore your favorite books easily!</p>
+  </header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search books by title or author...">
+  </div>
+
+  <main class="catalog" id="bookCatalog">
+    <div class="book-card">
+      <img src="images/book1.jpg" alt="Book 1">
+      <h2>The Great Adventure</h2>
+      <p>by Paul Wombo</p>
+    </div>
+    <div class="book-card">
+      <img src="images/book2.jpg" alt="Book 2">
+      <h2>Learning Python</h2>
+      <p>by John Ker</p>
+    </div>
+    <div class="book-card">
+      <img src="images/book3.jpg" alt="Book 3">
+      <h2>History of Science</h2>
+      <p>by Tony Ameh</p>
+    </div>
+    <!-- Add more books here -->
+  </main>
+
+  <footer>
+    &copy; 2025 James Book Catalog. All rights reserved.
+  </footer>
+
+  <script>
+    // Simple live search
+    const searchInput = document.getElementById('searchInput');
+    const catalog = document.getElementById('bookCatalog');
+    const books = catalog.getElementsByClassName('book-card');
+
+    searchInput.addEventListener('keyup', function() {
+      const filter = searchInput.value.toLowerCase();
+      Array.from(books).forEach(book => {
+        const title = book.getElementsByTagName('h2')[0].innerText.toLowerCase();
+        const author = book.getElementsByTagName('p')[0].innerText.toLowerCase();
+        if (title.includes(filter) || author.includes(filter)) {
+          book.style.display = '';
+        } else {
+          book.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
