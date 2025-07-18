@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aj's Restaurant</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for general text, Playfair Display for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            color: #333;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #0f0927; /* Darker blue-gray for headings */
+        }
+        .hero-section {
+            background-image: url('background006.jpg'); /* Placeholder image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        .reservation-form-bg {
+            background-image: url('background007.jpg'); /* Another placeholder */
+            background-size: cover;
+            background-position: center;
+        }
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial-item {
+            min-width: 100%; /* Each item takes full width */
+            box-sizing: border-box;
+            flex-shrink: 0; /* Prevent items from shrinking */
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* Full rounded */
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .slider-button.prev {
+            left: 1rem;
+        }
+        .slider-button.next {
+            right: 1rem;
+        }
+        .menu-item-image {
+            width: 100%;
+            height: 200px; /* Fixed height for menu images */
+            object-fit: cover; /* Cover the area, crop if necessary */
+            border-radius: 0.75rem;
+        }
+        /* Custom modal for reservation confirmation */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header & Hero Section -->
+    <header class="hero-section text-white py-20 px-4 md:px-8 lg:px-16 flex items-center justify-center min-h-screen">
+        <div class="text-center bg-black bg-opacity-60 p-8 rounded-xl shadow-2xl max-w-3xl">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight">Aj's Restaurant</h1>
+            <p class="text-xl md:text-2xl mb-8">Experience exquisite dining in a cozy ambiance.</p>
+            <a href="#reservation" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg">Book a Table</a>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold mb-4">About Our Restaurant</h2>
+                <p class="text-lg leading-relaxed mb-4">
+                    Aj's restaurant is a place where culinary artistry meets a warm, inviting atmosphere.
+                    Our chefs craft dishes using the freshest local ingredients, ensuring a delightful experience
+                    with every bite. From classic comfort food to innovative gourmet creations, we promise
+                    a memorable dining journey.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Established in 2025, we have quickly become a beloved spot for food enthusiasts seeking
+                    quality, taste, and exceptional service. Come and discover your new favorite dish!
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="background006.jpg" alt="Restaurant Interior" class="rounded-xl shadow-lg w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Section -->
+    <section id="menu" class="py-16 px-4 md:px-8 lg:px-16 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-10">Our Exquisite Menu</h2>
+
+            <!-- Menu Categories (Optional, can be expanded) -->
+            <div class="flex justify-center gap-4 mb-8">
+                <button class="menu-filter-button bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition duration-300" data-category="all">All</button>
+                <button class="menu-filter-button bg-gray-300 text-gray-800 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300" data-category="starters">Starters</button>
+                <button class="menu-filter-button bg-gray-300 text-gray-800 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300" data-category="main">Main Courses</button>
+                <button class="menu-filter-button bg-gray-300 text-gray-800 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300" data-category="desserts">Desserts</button>
+                <button class="menu-filter-button bg-gray-300 text-gray-800 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300" data-category="drinks">Drinks</button>
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div id="menu-items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu items will be dynamically loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation System Section -->
+    <section id="reservation" class="reservation-form-bg py-16 px-4 md:px-8 lg:px-16 text-white">
+        <div class="max-w-2xl mx-auto bg-black bg-opacity-70 p-8 rounded-xl shadow-2xl">
+            <h2 class="text-4xl font-bold text-center mb-8">Book Your Table</h2>
+            <form id="reservation-form" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-lg font-medium mb-2">Full Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <div>
+                    <label for="email" class="block text-lg font-medium mb-2">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <div>
+                    <label for="phone" class="block text-lg font-medium mb-2">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <div>
+                    <label for="date" class="block text-lg font-medium mb-2">Date</label>
+                    <input type="date" id="date" name="date" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <div>
+                    <label for="time" class="block text-lg font-medium mb-2">Time</label>
+                    <input type="time" id="time" name="time" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <div>
+                    <label for="guests" class="block text-lg font-medium mb-2">Number of Guests</label>
+                    <input type="number" id="guests" name="guests" min="1" max="20" value="2" required
+                           class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:ring-red-600 focus:border-red-600">
+                </div>
+                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition duration-300 ease-in-out shadow-lg">
+                    Confirm Reservation
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reservation Confirmation Modal -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-green-600">Reservation Confirmed!</h3>
+            <p class="text-lg mb-4">Thank you for your reservation at Aj's restaurant. We look forward to seeing you!</p>
+            <p class="text-md" id="modal-reservation-details"></p>
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="py-16 px-4 md:px-8 lg:px-16 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-10">What Our Customers Say</h2>
+            <div class="testimonial-slider relative">
+                <div class="testimonial-container" id="testimonial-container">
+                    <!-- Testimonials will be dynamically loaded here -->
+                </div>
+                <button class="slider-button prev" id="prev-testimonial">&#10094;</button>
+                <button class="slider-button next" id="next-testimonial">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Maps & Contact Section -->
+    <section id="contact" class="py-16 px-4 md:px-8 lg:px-16 bg-gray-100">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">Find Us & Contact</h2>
+                <p class="text-lg mb-4">
+                    Visit us at our convenient location or reach out with any questions.
+                </p>
+                <address class="text-lg not-italic mb-4">
+                    30 Noble height street Karusite <br>
+                    Phone: <a href="tel:+2347037827923" class="text-red-600 hover:underline">+234 703 782 7923</a><br>
+                    Email: <a href="mailto:ajrestaurant@gmail.com" class="text-red-600 hover:underline">ajrestaurant@gmail.com</a>
+                </address>
+                <div class="flex space-x-4">
+                    <!-- Social Media Links (placeholders) -->
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition duration-300">Facebook</a>
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition duration-300">Instagram</a>
+                    <a href="#" class="text-gray-600 hover:text-red-600 transition duration-300">Twitter</a>
+                </div>
+            </div>
+            <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg">
+                <!-- Google Maps Embed - Aj's Restaurant location -->
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0707416062836!2d7.5638829!3d9.0191487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ed5c0dba5c7%3A0x525ed342586a9b2e!2s30%20Noble%20Heights%20St%2C%20Karu%2C%20Abuja%20900110%2C%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1721322950000!5m2!1sen!2sng"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+           </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4 md:px-8 lg:px-16 text-center">
+        <p>&copy; 2025 Ajs's Restaurant. All rights reserved.</p>
+        <p class="mt-2">Designed with passion by James Ker</p>
+    </footer>
+
+    <script>
+        // --- Interactive Menu Logic ---
+        const menuItems = [
+            {
+                name: "Jollof Rice & Chicken",
+                description: "Classic Nigerian jollof rice served with grilled spicy chicken.",
+                price: "₦2500",
+                image: "jellof rice and chicken.jpg",
+                category: "main"
+            },
+            {
+                name: "Egusi Soup & Pounded Yam",
+                description: "Delicious melon seed soup served with soft pounded yam.",
+                price: "₦3000",
+                image: "egusi.jpg",
+                category: "main"
+            },
+            {
+                name: "Pepper Soup",
+                description: "Spicy hot broth with assorted meat, a Nigerian favorite starter.",
+                price: "₦1800",
+                image: "pepper soup.jpg",
+                category: "starters"
+            },
+            {
+                name: "Suya Skewers",
+                description: "Grilled spicy beef suya skewers served with onions and pepper sauce.",
+                price: "₦2000",
+                image: "suya.jpg",
+                category: "starters"
+            },
+            {
+                name: "Puff Puff",
+                description: "Sweet fluffy deep-fried dough balls, perfect for dessert.",
+                price: "₦1000",
+                image: "puff-puff-image.jpg",
+                category: "desserts"
+            },
+            {
+                name: "Plantain & Ice Cream",
+                description: "Fried sweet plantains served with vanilla ice cream.",
+                price: "₦1500",
+                image: "plantain and ice cream.jpg",
+                category: "desserts"
+            },
+            {
+                name: "Zobo Drink",
+                description: "Refreshing hibiscus drink, sweetened with pineapple and ginger.",
+                price: "₦800",
+                image: "zobo drink.jpg",
+                category: "drinks"
+            },
+            {
+                name: "Chapman",
+                description: "Classic Nigerian cocktail with Angostura bitters, lemon and soda.",
+                price: "₦1200",
+                image: "chapman.jpg",
+                category: "drinks"
+            }
+              
+        ];
+
+        const menuGrid = document.getElementById('menu-items-grid');
+        const menuFilterButtons = document.querySelectorAll('.menu-filter-button');
+
+        // Function to display menu items
+        function displayMenuItems(category = 'all') {
+            menuGrid.innerHTML = ''; // Clear current items
+
+            const filteredItems = category === 'all'
+                ? menuItems
+                : menuItems.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const menuItemDiv = document.createElement('div');
+                menuItemDiv.classList.add('bg-white', 'p-6', 'rounded-xl', 'shadow-lg', 'transform', 'hover:scale-105', 'transition', 'duration-300', 'ease-in-out');
+                menuItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="menu-item-image mb-4">
+                    <h3 class="text-2xl font-bold mb-2">${item.name}</h3>
+                    <p class="text-gray-600 mb-3">${item.description}</p>
+                    <p class="text-red-600 text-xl font-semibold">${item.price}</p>
+                `;
+                menuGrid.appendChild(menuItemDiv);
+            });
+        }
+
+        // Event listeners for menu filter buttons
+        menuFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button styling
+                menuFilterButtons.forEach(btn => {
+                    btn.classList.remove('bg-red-600', 'text-white');
+                    btn.classList.add('bg-gray-300', 'text-gray-800');
+                });
+                button.classList.remove('bg-gray-300', 'text-gray-800');
+                button.classList.add('bg-red-600', 'text-white');
+
+                // Filter and display items
+                const category = button.dataset.category;
+                displayMenuItems(category);
+            });
+        });
+
+        // Initial display of all menu items
+        displayMenuItems();
+
+        // --- Reservation System Logic ---
+        const reservationForm = document.getElementById('reservation-form');
+        const reservationModal = document.getElementById('reservation-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalReservationDetails = document.getElementById('modal-reservation-details');
+
+        reservationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const guests = document.getElementById('guests').value;
+
+            // Simple validation
+            if (!name || !email || !phone || !date || !time || !guests) {
+                // Changed from alert() to a custom message in the modal or a temporary div for better UX
+                modalReservationDetails.innerHTML = `<p class="text-red-500">Please fill in all fields.</p>`;
+                reservationModal.style.display = 'flex';
+                return;
+            }
+
+            // Basic email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                modalReservationDetails.innerHTML = `<p class="text-red-500">Please enter a valid email address.</p>`;
+                reservationModal.style.display = 'flex';
+                return;
+            }
+
+            // Basic phone number validation (just checks if it's not empty and has a reasonable length)
+            if (phone.length < 7) {
+                modalReservationDetails.innerHTML = `<p class="text-red-500">Please enter a valid phone number.</p>`;
+                reservationModal.style.display = 'flex';
+                return;
+            }
+
+            // Display confirmation in modal
+            modalReservationDetails.innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Date:</strong> ${date} at ${time}</p>
+                <p><strong>Guests:</strong> ${guests}</p>
+                <p>We've sent a confirmation to ${email}.</p>
+            `;
+            reservationModal.style.display = 'flex'; // Show the modal
+
+            // You would typically send this data to a server here (e.g., using fetch API)
+            console.log('Reservation Details:', { name, email, phone, date, time, guests });
+
+            // Clear the form after submission
+            reservationForm.reset();
+        });
+
+        // Close modal when close button is clicked
+        closeModalButton.addEventListener('click', () => {
+            reservationModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === reservationModal) {
+                reservationModal.style.display = 'none';
+            }
+        });
+
+
+        // --- Testimonial Slider Logic ---
+        const testimonials = [
+            {
+                quote: "The food at The AJ's Restaurant is simply divine! Every dish is a masterpiece.",
+                author: "Paul Wombo",
+                rating: 5
+            },
+            {
+                quote: "Amazing ambiance and even better service. Highly recommend the grilled salmon!",
+                author: "John Ker",
+                rating: 5
+            },
+            {
+                quote: "A wonderful dining experience. The staff were attentive and the atmosphere was perfect for a special evening.",
+                author: "Erdoo Ker",
+                rating: 4
+            },
+            {
+                quote: "Fantastic place for a family dinner. The kids loved their meals too!",
+                author: "Tony Ameh",
+                rating: 5
+            }
+        ];
+
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const prevTestimonialButton = document.getElementById('prev-testimonial');
+        const nextTestimonialButton = document.getElementById('next-testimonial');
+        let currentTestimonialIndex = 0;
+
+        // Function to display testimonials
+        function displayTestimonials() {
+            testimonialContainer.innerHTML = ''; // Clear current testimonials
+
+            testimonials.forEach((testimonial, index) => {
+                const testimonialItemDiv = document.createElement('div');
+                testimonialItemDiv.classList.add('testimonial-item', 'bg-gray-50', 'p-8', 'rounded-xl', 'shadow-md', 'text-center', 'flex-shrink-0');
+                if (index !== currentTestimonialIndex) {
+                    testimonialItemDiv.style.display = 'none'; // Hide non-current testimonials
+                }
+
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += `<span class="${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}">&#9733;</span>`; // Star unicode character
+                }
+
+                testimonialItemDiv.innerHTML = `
+                    <p class="text-xl italic mb-4">"${testimonial.quote}"</p>
+                    <div class="text-2xl mb-2">${stars}</div>
+                    <p class="text-lg font-semibold">- ${testimonial.author}</p>
+                `;
+                testimonialContainer.appendChild(testimonialItemDiv);
+            });
+
+            // Adjust the transform to show the current testimonial
+            // This is for visual continuity if you were to implement a true slide animation later
+            testimonialContainer.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
+        }
+
+        // Function to show next testimonial
+        function showNextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        // Function to show previous testimonial
+        function showPrevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        // Function to update which testimonial is visible (hides/shows, doesn't actually slide)
+        function updateTestimonialDisplay() {
+            const items = testimonialContainer.querySelectorAll('.testimonial-item');
+            items.forEach((item, index) => {
+                if (index === currentTestimonialIndex) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        prevTestimonialButton.addEventListener('click', showPrevTestimonial);
+        nextTestimonialButton.addEventListener('click', showNextTestimonial);
+
+        // Initial display of testimonials
+        displayTestimonials();
+        // Set up auto-slide for testimonials
+        setInterval(showNextTestimonial, 5000); // Change testimonial every 5 seconds
+
+    </script>
+</body>
+</html>

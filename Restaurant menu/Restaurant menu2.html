@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naija Delights Menu</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #fff8f0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .marquee {
+    background: #d35400;
+    color: white;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+
+  header {
+    text-align: center;
+    padding: 20px;
+    background: white;
+  }
+
+  header h1 {
+    color: #d35400;
+    margin: 0;
+    font-size: 2em;
+  }
+
+  .menu-section {
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 15px;
+  }
+
+  .section-title {
+    font-size: 1.5em;
+    color: #e67e22;
+    margin: 20px 0 10px;
+    border-bottom: 2px solid #e67e22;
+    display: inline-block;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  .menu-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .menu-card img {
+    width: 50%;
+    height: 130px;
+    object-fit: cover;
+  }
+
+  .menu-card h3 {
+    margin: 8px 0 4px;
+    font-size: 1.1em;
+    color: #d35400;
+  }
+
+  .price {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    font-size: 0.9em;
+    color: #999;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="marquee">
+  <marquee>🔥 Special Offer: Free Zobo drink with every Pounded Yam & Egusi order! 🍹🔥</marquee>
+</div>
+
+<header>
+  <h1>🍽️ Naija Delights</h1>
+  <p>Enjoy the best of Nigerian cuisine</p>
+</header>
+
+<div class="menu-section">
+  <div class="section-title">Starters</div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="pepper soup.jpg" alt="Pepper Soup">
+      <h3>Pepper Soup</h3>
+      <div class="price">₦1500</div>
+    </div>
+    <div class="menu-card">
+      <img src="suya.jpg" alt="Suya">
+      <h3>Suya</h3>
+      <div class="price">₦1000</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu-section">
+  <div class="section-title">Main Course</div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="Jellof rice and chicken.jpg">
+      <h3>Jollof Rice & Chicken</h3>
+      <div class="menu-section">
+            <div class="menu-grid">
+          <div class="menu-card">
+            <img src="jelof rice and chicken.jpg" alt="Jollof Rice" class="small-img">
+            <h3>Jollof Rice & Chicken</h3>
+            <div class="price">₦2500</div>
+          </div>
+          <div class="menu-card">
+            <img src="pounded yam and egusi.jpg" alt="Pounded Yam & Egusi">
+            <h3>Pounded Yam & Egusi</h3>
+            <div class="price">₦3000</div>
+          </div>
+          <div class="menu-card">
+            <img src="Egusi.jpg" alt="Amala & Ewedu">
+            <h3>Amala & Ewedu</h3>
+            <div class="price">₦2000</div>
+          </div>
+          <div class="menu-card">
+            <img src="Jellof rice and chicken.jpg" alt="Fried Rice & Dodo">
+            <h3>Fried Rice & Dodo</h3>
+            <div class="price">₦2500</div>
+          </div>
+          <div class="menu-card">
+            <img src="ofada rice and sauce.jpg" alt="Ofada Rice & Sauce">
+            <h3>Ofada Rice & Sauce</h3>
+            <div class="price">₦2800</div>
+          </div>
+          <div class="menu-card">
+            <img src="efo riro with swallow.jpg" alt="Efo Riro with Swallow">
+            <h3>Efo Riro with Swallow</h3>
+            <div class="price">₦2700</div>
+          </div>
+        </div>
+      </div>
+      

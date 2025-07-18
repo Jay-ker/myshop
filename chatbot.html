@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Ker Web Chatbot</title>
+  <!-- Tailwind CSS CDN for easy styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 500px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .chat-messages {
+      flex-grow: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background-color: #e9ecef;
+    }
+    .message {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      word-wrap: break-word;
+    }
+    .user-message {
+      align-self: flex-end;
+      background-color: #007bff;
+      color: white;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .chatbot-message {
+      align-self: flex-start;
+      background-color: #f8f9fa;
+      color: #343a40;
+      border: 1px solid #dee2e6;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid #dee2e6;
+      background-color: #ffffff;
+    }
+    .chat-input {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      margin-right: 0.75rem;
+      outline: none;
+    }
+    .chat-input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    .send-button {
+      padding: 0.75rem 1.25rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+    .send-button:hover {
+      background-color: #218838;
+      transform: translateY(-1px);
+    }
+    .send-button:active {
+      background-color: #1e7e34;
+      transform: translateY(0);
+    }
+    @media (max-width: 640px) {
+      .chat-container {
+        height: 95vh;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+      <div class="message chatbot-message">Hello! I'm James chatbot. What's your name?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="user-input" class="chat-input" placeholder="Type your message..." />
+      <button id="send-button" class="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    let userName = '';
+    let askedForName = true;
+
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'chatbot-message');
+      messageDiv.textContent = text;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getChatbotResponse(message) {
+      const lowerCaseMessage = message.toLowerCase();
+
+      if (askedForName && userName === '') {
+        userName = message.trim().split(' ')[0];
+        askedForName = false;
+        return `Nice to meet you, ${userName}! How can James chatbot help you today? You can type 'bye' to exit.`;
+      }
+
+      if (lowerCaseMessage === 'bye' || lowerCaseMessage === 'exit') {
+        return `Goodbye, ${userName || 'friend'}! It was nice chatting with you.`;
+      }
+      if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+        return `Hello there, ${userName || 'friend'}! How can James chatbot help you today?`;
+      }
+      if (lowerCaseMessage.includes('how are you')) {
+        return "I'm just a James' program, so I don't have feelings, but thanks for asking!";
+      }
+      if (lowerCaseMessage.includes('what is your name') || lowerCaseMessage.includes('your name')) {
+        return "You can just call me James chatbot.";
+      }
+      if (lowerCaseMessage.includes('what did i say my name was before') || lowerCaseMessage.includes('your name')) {
+        return "James";
+      }
+      if (lowerCaseMessage.includes('weather') || lowerCaseMessage.includes     ('abuja')) {
+        return `Results for Abuja:
+Thundershower, 28°C°F
+Precipitation: 40%
+Humidity: 75%
+Wind: 14 km/h`;
+      }
+      if (lowerCaseMessage.includes('help')) {
+        return "I can respond to greetings, questions about my name, well-being, capital of Benue, favorite food, etc.";
+      }
+      if (lowerCaseMessage.includes('capital') && lowerCaseMessage.includes('benue')) {
+        return "The capital of Benue is Makurdi.";
+      }
+      if (lowerCaseMessage.includes('largest ocean')) {
+        return "The Pacific Ocean is the largest ocean on Earth.";
+      }
+      if (lowerCaseMessage.includes('who created you') || lowerCaseMessage.includes('your creator')) {
+        return "I am a language model, created by James Ker.";
+      }
+      if (lowerCaseMessage.includes('favorite food') || lowerCaseMessage.includes('favourite food')) {
+        return "James' Ker favorite food is rice and stew with boiled eggs, fried chicken and fish.";
+      }
+
+      return "I'm sorry, I don't understand that. Can you rephrase?";
+    }
+
+    sendButton.addEventListener('click', () => {
+      const message = userInput.value.trim();
+      if (message) {
+        addMessage(message, 'user');
+        userInput.value = '';
+        setTimeout(() => {
+          const botResponse = getChatbotResponse(message);
+          addMessage(botResponse, 'chatbot');
+          if (message.toLowerCase() === 'bye' || message.toLowerCase() === 'exit') {
+            userInput.disabled = true;
+            sendButton.disabled = true;
+          }
+        }, 500);
+      }
+    });
+
+    userInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        sendButton.click();
+      }
+    });
+  </script>
+</body>
+</html>

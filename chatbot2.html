@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Ker Enhanced Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 500px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .chat-messages {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background-color: #e9ecef;
+    }
+    .message {
+      max-width: 80%;
+      padding: 0.6rem 1rem;
+      border-radius: 1rem;
+      word-wrap: break-word;
+    }
+    .user-message {
+      align-self: flex-end;
+      background-color: #007bff;
+      color: white;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .chatbot-message {
+      align-self: flex-start;
+      background-color: #f8f9fa;
+      color: #343a40;
+      border: 1px solid #dee2e6;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .typing-indicator {
+      font-size: 0.9rem;
+      color: #555;
+      font-style: italic;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 0.75rem;
+      border-top: 1px solid #dee2e6;
+      background: #fff;
+    }
+    .chat-input {
+      flex-grow: 1;
+      border: 1px solid #ced4da;
+      border-radius: 0.75rem;
+      padding: 0.6rem 1rem;
+      margin-right: 0.5rem;
+      outline: none;
+    }
+    .chat-input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+    .send-button {
+      background: #28a745;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border-radius: 0.75rem;
+      border: none;
+      cursor: pointer;
+    }
+    .send-button:hover { background: #218838; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-area">
+      <input type="text" id="user-input" class="chat-input" placeholder="Type your message..." />
+      <button id="send-button" class="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    let userName = '';
+    let askedForName = true;
+    let isBotTyping = false;
+
+    // Load previous history from localStorage
+    window.onload = () => {
+      const saved = localStorage.getItem('chatHistory');
+      if (saved) {
+        chatMessages.innerHTML = saved;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      } else {
+        addMessage("Hello! I'm James chatbot. What's your name?", 'chatbot');
+      }
+    }
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = 'message ' + (sender === 'user' ? 'user-message' : 'chatbot-message');
+      msg.textContent = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Save updated chat to localStorage
+      localStorage.setItem('chatHistory', chatMessages.innerHTML);
+    }
+
+    function showTypingIndicator() {
+      if (!isBotTyping) {
+        isBotTyping = true;
+        const indicator = document.createElement('div');
+        indicator.className = 'typing-indicator';
+        indicator.id = 'typing';
+        indicator.textContent = 'James chatbot is typing...';
+        chatMessages.appendChild(indicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+
+    function hideTypingIndicator() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+      isBotTyping = false;
+    }
+
+    function getChatbotResponse(message) {
+      const lower = message.toLowerCase();
+      if (askedForName && !userName) {
+        userName = message.split(' ')[0];
+        askedForName = false;
+        return `Nice to meet you, ${userName}! You can ask about the weather, capital of Benue, favorite food, etc.`;
+      }
+      if (lower === 'bye' || lower === 'exit') {
+        return `Goodbye, ${userName || 'friend'}!`;
+      }
+      if (lower.includes('hello') || lower.includes('hi')) return `Hello ${userName || 'friend'}!`;
+      if (lower.includes('how are you')) return "I'm just a program, but I'm doing fine!";
+      if (lower.includes('what is your name') || lower.includes('your name')) return "You can call me James chatbot.";
+      if (lower.includes('weather') && lower.includes('abuja')) {
+        return "Abuja: Thundershower 28°C, Humidity 75%, Wind 14 km/h.";
+      }
+      if (lower.includes('capital') && lower.includes('benue')) return "The capital of Benue is Makurdi.";
+      if (lower.includes('largest ocean')) return "The Pacific Ocean is the largest.";
+      if (lower.includes('who created you') || lower.includes('your creator')) return "I was created by James Ker.";
+      if (lower.includes('favorite food') || lower.includes('favourite food'))
+        return "James' Ker favorite food is rice and stew with boiled eggs, fried chicken, and fish.";
+      if (lower.includes('help')) return "You can ask me about the weather, capital, favorite food, etc.";
+
+      return "I'm not sure how to answer that. Try asking something else!";
+    }
+
+    function handleUserMessage() {
+      const msg = userInput.value.trim();
+      if (msg) {
+        addMessage(msg, 'user');
+        userInput.value = '';
+        showTypingIndicator();
+        setTimeout(() => {
+          hideTypingIndicator();
+          const reply = getChatbotResponse(msg);
+          addMessage(reply, 'chatbot');
+        }, 700);
+      }
+    }
+
+    sendButton.onclick = handleUserMessage;
+    userInput.onkeypress = e => { if (e.key === 'Enter') handleUserMessage(); };
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bufagriin Member Registration Demo</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #e8f0fe);
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 30px 20px;
+    background: #4CAF50;
+    color: white;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+
+  header p {
+    margin-top: 5px;
+    font-size: 1em;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 20px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 4px;
+    font-size: 1em;
+  }
+
+  button {
+    width: 100%;
+    background: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    margin-top: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #45a049;
+  }
+
+  .search-container {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .search-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+
+  .member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .member-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .member-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .member-name {
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 5px;
+  }
+
+  .member-info {
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌿 Bufagriin Member Portal</h1>
+  <p>Cooperative Soceity</p>
+</header>
+
+<div class="container">
+  <h2>Register a New Member</h2>
+  <div class="form-group">
+    <label for="nameInput">Full Name</label>
+    <input type="text" id="nameInput" placeholder="e.g. James Ker">
+  </div>
+  <div class="form-group">
+    <label for="emailInput">Email</label>
+    <input type="email" id="emailInput" placeholder="e.g. james@example.com">
+  </div>
+  <div class="form-group">
+    <label for="phoneInput">Phone</label>
+    <input type="text" id="phoneInput" placeholder="e.g. 08012345678">
+  </div>
+  <button onclick="registerMember()">Register Member</button>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="🔍 Search members by name, email or phone...">
+  </div>
+
+  <div class="member-list" id="memberList">
+    <!-- Registered members will appear here -->
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Bufagriin Demo. All rights reserved.
+</footer>
+
+<script>
+  let members = [];
+
+  function registerMember() {
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const phone = document.getElementById('phoneInput').value.trim();
+
+    if (!name || !email || !phone) {
+      alert('❗ Please fill in all fields.');
+      return;
+    }
+
+    const member = {
+      id: members.length + 1,
+      name,
+      email,
+      phone
+    };
+    members.push(member);
+    displayMembers();
+    // Clear form fields
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('phoneInput').value = '';
+  }
+
+  function displayMembers(filter = '') {
+    const list = document.getElementById('memberList');
+    list.innerHTML = '';
+    members
+      .filter(m => 
+        m.name.toLowerCase().includes(filter) ||
+        m.email.toLowerCase().includes(filter) ||
+        m.phone.toLowerCase().includes(filter)
+      )
+      .forEach(m => {
+        const div = document.createElement('div');
+        div.className = 'member-card';
+        div.innerHTML = `
+          <div class="member-name">${m.name}</div>
+          <div class="member-info">${m.email}</div>
+          <div class="member-info">${m.phone}</div>
+        `;
+        list.appendChild(div);
+      });
+  }
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    displayMembers(filter);
+  });
+</script>
+
+</body>
+</html>
