@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNext Technologies - Innovative Digital Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (assuming similar aesthetic to screenshots, using Inter for body and Poppins for headings) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for GNext Technologies */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #222;
+        }
+        /* Custom orange color from screenshots */
+        .text-gnext-orange { color: #FF6B00; }
+        .bg-gnext-orange { background-color: #FF6B00; }
+        .hover\:bg-gnext-dark-orange:hover { background-color: #E05F00; }
+        .border-gnext-orange { border-color: #FF6B00; }
+
+        /* Custom light purple/pink from backgrounds */
+        .bg-gnext-light-purple { background-color: #F8F0FF; } /* A light purple/pink shade */
+        .text-gnext-light-purple { color: #F8F0FF; }
+
+        /* Hero section background pattern */
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4H6v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zM48 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 0v-4h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 12v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 60px 60px;
+        }
+
+        /* About section tab active state */
+        .about-tab.active {
+            border-bottom: 2px solid #FF6B00;
+            color: #FF6B00;
+            font-weight: 600;
+        }
+
+        /* Project filter button active state */
+        .project-filter-button.active {
+            background-color: #FF6B00;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.3);
+        }
+
+        /* General card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Specific styles for hero images with curved design */
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 120%; /* Aspect ratio for portrait images */
+            overflow: hidden;
+            border-radius: 50% 50% 0 0 / 10% 10% 0 0; /* Top curves */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50% 50% 0 0 / 10% 10% 0 0; /* Apply curves to image itself */
+        }
+        /* Specific styling for the hero section background to match the screenshot */
+        #home.hero-section {
+            background-color: #F8F0FF; /* Light purple/pink background */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4H6v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zM48 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 0v-4h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 12v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 60px 60px;
+        }
+
+        /* Header curved bottom at edges */
+        header {
+            border-bottom-left-radius: 0 0 50px 0; /* No top-left or top-right radius, 50px bottom-left */
+            border-bottom-right-radius: 0 0 0 50px; /* No top-left or top-right radius, 50px bottom-right */
+            overflow: hidden; /* Ensures content doesn't overflow the curve */
+        }
+
+        /* Keyframes for the pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.2;
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Styles for the mobile menu overlay and active state */
+        .mobile-menu-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .mobile-menu-overlay.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-container {
+            transform: translateX(-100%);
+            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.7s ease-in-out;
+            opacity: 0;
+        }
+        
+        .mobile-menu-container.is-active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-toggle-button.is-active .line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle-button.is-active .line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle-button.is-active .line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            border-radius: 9999px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
+        <nav class="w-full px-0 md:px-6 py-3 md:py-4 flex flex-wrap items-center justify-between gap-3 bg-white border-b border-gray-100 shadow-sm md:rounded-full">
+            <div class="flex items-center px-4 md:px-0">
+                <a aria-current="page" class="active" href="/" data-discover="true">
+                    <!-- Updated logo src to a placeholder -->
+                    <img alt="GNext Technologies Logo" class="w-20 h-auto object-contain" src="logo-CC_1xyRT.png">
+                </a>
+            </div>
+            <!-- Hamburger Menu Button -->
+            <button id="mobile-menu-toggle-button" class="md:hidden p-3 mr-4 rounded-xl bg-gradient-to-r from-[#FF6509] to-[#ff7a2f] shadow-lg hover:shadow-xl hover:shadow-orange-200/20 transition-all duration-500 ease-in-out z-50 group" aria-label="Toggle menu" aria-expanded="false">
+                <div class="w-6 h-4 relative flex flex-col justify-between overflow-hidden">
+                    <span class="line w-4 ml-2"></span>
+                    <span class="line w-6"></span>
+                    <span class="line w-5 ml-1"></span>
+                </div>
+            </button>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="fixed md:static top-0 left-0 w-full md:w-auto h-full md:h-auto bg-white md:bg-transparent shadow-[5px_0_25px_0_rgba(0,0,0,0.1)] md:shadow-none transform transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] -translate-x-full opacity-0 md:translate-x-0 md:opacity-100 flex flex-col md:flex-row items-start md:items-center gap- md:gap-8 pt-28 md:pt-0 px-8 md:px-0 z-40 before:content-[''] before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-gradient-to-b before:from-[#FF6509] before:to-[#0D49AB] before:rounded-r md:before:hidden">
+                <div class="absolute top-6 left-8 md:hidden flex items-center gap-4">
+                    <!-- Updated logo src to a placeholder -->
+                    <img alt="GNext Technologies Logo" class="w-40 h-15 object-contain" src="https://placehold.co/160x60/FF6509/FFFFFF?text=GNext">
+                    <div class="h-8 w-[1px] bg-gradient-to-b from-[#FF6509] to-[#0D49AB]"></div>
+                    <!-- Close button for mobile menu -->
+                    <button id="close-mobile-menu" class="absolute right-4 p-2 text-gray-400 hover:text-gnext-orange">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <a aria-current="page" class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-[#FF6509] font-medium" href="#home" data-discover="true">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                    <span class="relative">Home</span>
+                </a>
+                <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="About us.html" data-discover="true">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                    <span class="relative">About Us</span>
+                </a>
+                <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="#team" data-discover="true">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                    <span class="relative">Team</span>
+                </a>
+                <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="#projects" data-discover="true">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                    <span class="relative">Projects</span>
+                </a>
+                <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="#contact" data-discover="true">
+                    <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                    <span class="relative">Contact Us</span>
+                </a>
+                <div class="mt-8 md:hidden">
+                    <div class="flex items-center gap-4 px-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#FF6509]/10 flex items-center justify-center text-[#FF6509] hover:bg-[#FF6509] hover:text-white transition-all duration-300">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-[#FF6509]/10 flex items-center justify-center text-[#FF6509] hover:bg-[#FF6509] hover:text-white transition-all duration-300">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Overlay for mobile menu -->
+            <div id="mobile-menu-overlay" class="fixed inset-0 backdrop-blur-sm bg-black/40 z-30 md:hidden mobile-menu-overlay"></div>
+            <div class="hidden md:flex items-center">
+                <a class="group w-full md:w-auto px-6 py-2.5 bg-[#FF6509] text-white font-medium rounded-full transform hover:scale-105 transition-all duration-300 ease-in-out hover:text-white shadow-lg hover:shadow-xl hover:shadow-[#FF6509]/20 relative overflow-hidden" href="#contact us" data-discover="true">
+                    <span class="relative z-10">Get a Quote</span>
+                    <div class="absolute inset-0 bg-[#FF6509] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-section py-20 md:py-32 overflow-hidden">
+        <!-- New div for the pulsating background effect -->
+        <div class="absolute -top-6 -left-6 w-4/5 h-4/5 bg-[#FF6509]/10 rounded-full filter blur-3xl animate-pulse"></div>
+
+        <div class="absolute inset-0 hero-pattern opacity-30"></div>
+        <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <!-- Left Content -->
+            <div class="lg:w-1/2 text-center lg:text-left z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
+                    Transform your business with cutting-edge <span class="text-gnext-orange">technology solutions.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-xl mx-auto lg:mx-0">
+                    Our expert team delivers innovative digital solutions to help you succeed in today's competitive landscape.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#contact" class="inline-block bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        Contact Us
+                    </a>
+                    <a href="#about us " class="inline-block border border-gnext-orange text-gnext-orange hover:bg-gnext-orange hover:text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <!-- Right Image with curved design (now a single image) -->
+            <div class="lg:w-1/2 flex justify-center items-center z-10">
+                <div class="hero-image-container w-full max-w-[300px] md:max-w-[400px] lg:max-w-[500px]">
+                    <img src="https://placehold.co/500x600/FF6B00/FFFFFF?text=Business+Team" alt="Business Team" class="transform hover:scale-102 transition-transform duration-500" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 mt-16 md:mt-24">
+            <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-project-diagram text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">25+</p>
+                    <p class="text-gray-600">Projects Completed</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-handshake text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">98%</p>
+                    <p class="text-gray-600">Client Satisfaction</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-hourglass-half text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">10+</p>
+                    <p class="text-gray-600">Years Experience</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-users text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">10</p>
+                    <p class="text-gray-600">Team Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-6 md:px-12 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <!-- Left Content -->
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">About <span class="text-gnext-orange">GNext Technologies</span></h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    GNext Technologies is a leading IT solutions provider specializing in innovative software development,
+                    digital transformation, and comprehensive IT services. Our mission is to empower organizations with
+                    cutting-edge technology solutions that drive efficiency, enhance performance, and enable growth.
+                </p>
+                <!-- Tabs for Vision, Mission, Values -->
+                <div class="flex justify-center lg:justify-start space-x-8 mb-8 border-b border-gray-200">
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300 active" data-tab="vision">Vision</button>
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300" data-tab="mission">Mission</button>
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300" data-tab="values">Values</button>
+                </div>
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <p id="vision-content" class="text-lg leading-relaxed text-gray-700 active-tab-content">
+                        To be a trusted brand in delivering IT solutions, driving innovation and transformation for
+                        businesses and organizations worldwide.
+                    </p>
+                    <p id="mission-content" class="text-lg leading-relaxed text-gray-700 hidden">
+                        Our mission is to empower businesses with cutting-edge technology, fostering growth and efficiency
+                        through exceptional software development, digital transformation, and IT consulting services.
+                    </p>
+                    <p id="values-content" class="text-lg leading-relaxed text-gray-700 hidden">
+                        We uphold integrity, innovation, client-centricity, excellence, and teamwork as our core values,
+                        guiding every interaction and solution we provide.
+                    </p>
+                </div>
+            </div>
+            <!-- Right Image -->
+            <div class="lg:w-1/2">
+                <img src="aboutus-fk-GLdj9.jpg" alt="About GNext Technologies" class="rounded-xl shadow-2xl w-full h-auto object-cover transform hover:scale-102 transition-transform duration-500" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="py-20 px-6 md:px-12 lg:px-20 bg-gray-50 hero-pattern">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Choose <span class="text-gnext-orange">GNext Technologies?</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                We combine technical expertise, industry knowledge, and a client-focused approach to deliver
+                exceptional solutions that drive business success.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-chart-line text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Proven Track Record</h3>
+                    <p class="text-gray-600">
+                        Demonstrated success in delivering high-quality IT projects on time and within budget.
+                    </p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-handshake text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Client-Centric Approach</h3>
+                    <p class="text-gray-600">
+                        A strong focus on understanding and meeting the unique needs of each client.
+                    </p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-lightbulb text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Innovative Solutions</h3>
+                    <p class="text-gray-600">
+                        Leveraging the latest technologies to provide cutting-edge solutions.
+                    </p>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-users-cog text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Experienced Team</h3>
+                    <p class="text-gray-600">
+                        A team of highly skilled and certified professionals dedicated to your success.
+                    </p>
+                </div>
+                <!-- Feature Card 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-star text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Commitment to Excellence</h3>
+                    <p class="text-gray-600">
+                        Delivering superior quality and exceeding expectations in every project.
+                    </p>
+                </div>
+                <!-- Feature Card 6 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-shield-alt text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Reliable Security</h3>
+                    <p class="text-gray-600">
+                        Implementing robust security measures to protect your data and systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - NEW -->
+    <section id="team" class="py-20 px-6 md:px-12 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Meet Our <span class="text-gnext-orange">Team</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                Our diverse team of experts is dedicated to bringing your vision to life with passion and precision.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member Card 1 -->
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden card-hover-effect">
+                    <img src="https://placehold.co/400x400/5C6BC0/FFFFFF?text=John+Doe" alt="John Doe" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800">John Doe</h3>
+                        <p class="text-gnext-orange text-md font-medium mb-4">Founder & CEO</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-twitter text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fas fa-envelope text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card 2 -->
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden card-hover-effect">
+                    <img src="https://placehold.co/400x400/FFD54F/333333?text=Jane+Smith" alt="Jane Smith" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800">Jane Smith</h3>
+                        <p class="text-gnext-orange text-md font-medium mb-4">Lead Developer</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-twitter text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fas fa-envelope text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card 3 -->
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden card-hover-effect">
+                    <img src="https://placehold.co/400x400/9575CD/FFFFFF?text=Michael+Chen" alt="Michael Chen" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800">Michael Chen</h3>
+                        <p class="text-gnext-orange text-md font-medium mb-4">Project Manager</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-twitter text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fas fa-envelope text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member Card 4 -->
+                <div class="bg-gray-50 rounded-xl shadow-lg overflow-hidden card-hover-effect">
+                    <img src="https://placehold.co/400x400/4CAF50/FFFFFF?text=Sarah+Lee" alt="Sarah Lee" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800">Sarah Lee</h3>
+                        <p class="text-gnext-orange text-md font-medium mb-4">UI/UX Designer</p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-linkedin-in text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fab fa-twitter text-lg"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-gnext-orange transition duration-300"><i class="fas fa-envelope text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Featured Projects Section -->
+    <section id="projects" class="py-20 px-6 md:px-12 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Featured <span class="text-gnext-orange">Projects</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                Discover how GNext Technologies is reshaping industries through innovative digital solutions.
+                Our portfolio showcases transformative projects that drive real business impact.
+            </p>
+
+            <!-- Project Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="project-filter-button bg-gnext-orange text-white py-3 px-8 rounded-full hover:bg-gnext-dark-orange transition duration-300 shadow-lg text-lg active" data-category="all">All Projects</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="web-applications">Web Applications</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="mobile-solutions">Mobile Solutions</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="enterprise-software">Enterprise Software</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="mobile-solutions">
+                    <img src="https://placehold.co/600x400/FF6B00/FFFFFF?text=Mobile+Banking" alt="Mobile and Internet Banking Platform" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Pristine Divitis Microfinance Bank</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            A secure and intuitive mobile and internet banking platform, offering seamless transactions, account management, and personalized financial insights to customers of Pristine Divitis Microfinance Bank.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="web-applications">
+                    <img src="https://placehold.co/600x400/007BFF/FFFFFF?text=Election+Monitoring" alt="Situation Room (Election Monitoring System)" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Situation Room (Hon. Ugochinyere)</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            An advanced web-based election monitoring system that provides real-time data visualization, incident reporting, and public transparency tools for political campaigns and observers.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="enterprise-software">
+                    <img src="https://placehold.co/600x400/28A745/FFFFFF?text=Hospital+Management" alt="Hospital Management System" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Comprehensive Hospital Management System</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            A robust enterprise solution for hospitals, integrating patient records, appointment scheduling, billing, and inventory management into a single, efficient platform.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                 <!-- Project Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="web-applications">
+                    <img src="https://placehold.co/600x400/F08080/FFFFFF?text=E-commerce+Platform" alt="E-commerce Platform" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Custom E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Developed a scalable and user-friendly e-commerce platform with integrated payment gateways, product management, and a personalized shopping experience for a retail client.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                 <!-- Project Card 5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="mobile-solutions">
+                    <img src="https://placehold.co/600x400/6A5ACD/FFFFFF?text=Logistics+App" alt="Logistics Tracking App" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Logistics and Fleet Management App</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            A mobile solution for a logistics company, enabling real-time tracking of shipments, fleet management, and automated route optimization to boost delivery efficiency.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                 <!-- Project Card 6 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="enterprise-software">
+                    <img src="https://placehold.co/600x400/FFA500/FFFFFF?text=ERP+System" alt="ERP System" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Enterprise Resource Planning (ERP) System</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Developed a custom ERP system for a manufacturing company to streamline their supply chain, human resources, and financial processes, resulting in a significant increase in operational efficiency.
+                        </p>
+                        <a href="#" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="mt-16 inline-block bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-4 px-10 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                View All Projects <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 lg:px-20 bg-gnext-light-purple hero-pattern">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+            <!-- Contact Form -->
+            <div class="lg:w-1/2 bg-white p-8 md:p-12 rounded-xl shadow-xl z-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Get in <span class="text-gnext-orange">Touch</span></h2>
+                <p class="text-gray-600 mb-8">
+                    Fill out the form below to get a free quote or to discuss your project.
+                </p>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gnext-orange focus:border-transparent transition duration-300">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gnext-orange focus:border-transparent transition duration-300">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gnext-orange focus:border-transparent transition duration-300">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gnext-orange focus:border-transparent transition duration-300"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+            <!-- Contact Details and Map -->
+            <div class="lg:w-1/2 flex flex-col justify-between z-10">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 lg:text-left text-center">Contact <span class="text-gnext-orange">Information</span></h3>
+                    <div class="bg-white p-8 rounded-xl shadow-xl space-y-6 mb-8">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt text-2xl text-gnext-orange"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Address</p>
+                                <p class="text-gray-600">#5 J.A Mailaya, Abuja, Nigeria</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-2xl text-gnext-orange"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Email</p>
+                                <p class="text-gray-600"><a href="mailto:info@gnexttech.net" class="hover:underline">info@gnexttech.net</a></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-phone-alt text-2xl text-gnext-orange"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Phone</p>
+                                <p class="text-gray-600"><a href="tel:+2348069743921" class="hover:underline">+234 806 974 3921</a>, <a href="tel:+2348069811543" class="hover:underline">+234 806 981 1543</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map Placeholder -->
+                <div class="map-container mt-8 lg:mt-0 shadow-xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15758.33649557342!2d7.49479366624971!3d9.057790380385925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0b04a434c44b%3A0xe54d7e35b71c261e!2sAbuja%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1625902120037!5m2!1sen!2sng" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6 md:px-12 lg:px-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Column 1: Logo & Tagline -->
+            <div>
+                <a href="#home" class="flex items-center space-x-2 mb-4">
+                    <img src="https://placehold.co/40x40/FF6B00/FFFFFF?text=GN" alt="GNext Technologies Logo" class="h-10 w-10 rounded-full shadow-sm" loading="lazy">
+                    <span class="text-2xl font-bold">GNext <span class="text-gnext-orange">Technologies</span></span>
+                </a>
+                <p class="text-gray-400 text-sm mb-4">...a trusted solution</p>
+                <p class="text-gray-400 text-sm">
+                    To be a trusted brand in delivering IT solutions, driving innovation and
+                    transformation for businesses and organizations worldwide.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#home" class="hover:text-gnext-orange transition duration-300">Home</a></li>
+                    <li><a href="#about" class="hover:text-gnext-orange transition duration-300">About Us</a></li>
+                    <li><a href="#team" class="hover:text-gnext-orange transition duration-300">Team</a></li>
+                    <li><a href="#projects" class="hover:text-gnext-orange transition duration-300">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-gnext-orange transition duration-300">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Our Services -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Our Services</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Custom Software Development</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Digital Transformation</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">IT Consulting</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Mobile & Web Development</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Data Analytics</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Business Intelligence</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact Us -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                <address class="not-italic space-y-2 text-gray-400">
+                    <p><i class="fas fa-map-marker-alt mr-2 text-gnext-orange"></i> #5 J.A Mailaya, Abuja, Nigeria</p>
+                    <p><i class="fas fa-envelope mr-2 text-gnext-orange"></i> <a href="mailto:info@gnexttech.net" class="hover:underline">info@gnexttech.net</a></p>
+                    <p><i class="fas fa-phone-alt mr-2 text-gnext-orange"></i> <a href="tel:+2348069743921" class="hover:underline">+234 806 974 3921</a></p>
+                    <p><i class="fas fa-phone-alt mr-2 text-gnext-orange"></i> <a href="tel:+2348069811543" class="hover:underline">+234 806 981 1543</a></p>
+                </address>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+            &copy; 2025 GNext Technologies. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuToggleButton = document.getElementById('mobile-menu-toggle-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        // Function to open the menu
+        function openMenu() {
+            mobileMenu.classList.add('is-active');
+            mobileMenu.classList.remove('-translate-x-full', 'opacity-0');
+            mobileMenuToggleButton.setAttribute('aria-expanded', 'true');
+            mobileMenuOverlay.classList.add('is-active');
+        }
+
+        // Function to close the menu
+        function closeMenu() {
+            mobileMenu.classList.remove('is-active');
+            mobileMenu.classList.add('-translate-x-full', 'opacity-0');
+            mobileMenuToggleButton.setAttribute('aria-expanded', 'false');
+            mobileMenuOverlay.classList.remove('is-active');
+        }
+
+        // Event listener for opening the menu
+        mobileMenuToggleButton.addEventListener('click', openMenu);
+
+        // Event listener for closing the menu
+        closeMobileMenuButton.addEventListener('click', closeMenu);
+
+        // Event listener to close the menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Event listener to close the menu when clicking the overlay
+        mobileMenuOverlay.addEventListener('click', closeMenu);
+
+
+        // --- About Us Section Tabs ---
+        const aboutTabs = document.querySelectorAll('.about-tab');
+        const tabContents = document.querySelectorAll('#tab-content p');
+
+        aboutTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and hide all content
+                aboutTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.classList.remove('border-b-2', 'border-gnext-orange', 'text-gnext-orange', 'font-semibold');
+                    t.classList.add('text-gray-600');
+                });
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                // Add active class to clicked tab and show corresponding content
+                tab.classList.add('active');
+                tab.classList.add('border-b-2', 'border-gnext-orange', 'text-gnext-orange', 'font-semibold');
+                tab.classList.remove('text-gray-600');
+
+                const targetTab = tab.dataset.tab;
+                document.getElementById(`${targetTab}-content`).classList.remove('hidden');
+            });
+        });
+
+        // Set initial active tab
+        document.querySelector('.about-tab[data-tab="vision"]').click();
+
+        // --- Project Filter Logic ---
+        const projectFilterButtons = document.querySelectorAll('.project-filter-button');
+        const projectsGrid = document.getElementById('projects-grid');
+        const projectCards = projectsGrid.querySelectorAll('.card-hover-effect'); // Get all project cards
+
+        projectFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button styling
+                projectFilterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-gnext-orange', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-gray-200', 'text-gray-800', 'shadow-md');
+                });
+                button.classList.add('active', 'bg-gnext-orange', 'text-white', 'shadow-lg');
+                button.classList.remove('bg-gray-200', 'text-gray-800', 'shadow-md');
+
+                const category = button.dataset.category;
+
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block'; // Or 'flex', 'grid' depending on layout
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100); // Small delay for fade-in effect
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        card.addEventListener('transitionend', function handler() {
+                            card.style.display = 'none';
+                            card.removeEventListener('transitionend', handler);
+                        }, { once: true });
+                    }
+                });
+            });
+        });
+
+        // Initial filter for "All Projects"
+        document.querySelector('.project-filter-button[data-category="all"]').click();
+    </script>
+</body>
+</html>

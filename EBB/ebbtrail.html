@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBB Bridesmaids - Where Dreams Dress Up</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for EBB Bridesmaids V2 */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #3a3a3a; /* Slightly darker soft gray */
+            background-color: #fcfcfc; /* Very light background */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #333333; /* Dark grey for headings, blending with logo */
+        }
+
+        /* Hero Section with refined overlay and animation */
+        .hero-section {
+            /* Updated to a publicly accessible image URL */
+            background-image: url('https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInScale 1.5s ease-out forwards;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Product card image styling */
+        .product-image {
+            width: 100%;
+            height: 320px; /* Slightly taller for more impact */
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .product-card.active-highlight {
+            border: 3px solid #B8860B; /* Highlight color: DarkGoldenrod */
+            box-shadow: 0 0 0 5px rgba(184, 134, 11, 0.4);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        /* Testimonial slider specific styles */
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-container {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+        }
+        .testimonial-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fefefe, #f9f9f9); /* Subtle gradient */
+            border: 1px solid #eee;
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.5s ease-in-out;
+        }
+        .testimonial-item.active {
+            opacity: 1; /* Fade in active item */
+        }
+        .slider-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.8rem 1.2rem; /* Slightly larger buttons */
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.8rem; /* Larger icons */
+        }
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slider-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.3s ease-out;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content {
+            animation: slideInFromTop 0.4s ease-out forwards;
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom form styling for elegance */
+        .form-input {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .form-input:focus {
+            border-color: #B8860B; /* DarkGoldenrod for focus */
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
+        }
+        .submit-button {
+            background-color: #B8860B; /* DarkGoldenrod */
+            color: white;
+            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.4);
+        }
+        .submit-button:hover {
+            background-color: #A0780A; /* Darker goldenrod */
+            box-shadow: 0 6px 15px rgba(184, 134, 11, 0.6);
+        }
+
+        /* Gallery Section specific styles */
+        .gallery-grid img {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Notification Message Area -->
+    <div id="notification-message" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-[101] hidden opacity-0 transition-opacity duration-300" role="status" aria-live="polite">
+        <!-- Message will be inserted here -->
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto">
+            <!-- Logo Section -->
+            <a href="#home" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105" aria-label="EBB Bridesmaids Home">
+                <!-- IMPORTANT: Replace this URL with your actual logo's URL for it to display -->
+                <!-- The placeholder below is styled to visually match the logo's colors -->
+                <img src="logo.jpeg" alt="EBB Bridesmaids Logo" class="h-12 w-12 rounded-full shadow-md" loading="lazy">
+                <span class="text-3xl md:text-4xl font-bold text-[#333333] tracking-wider">EBB <span class="text-[#B8860B]">Bridesmaids</span></span>
+            </a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Home section">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to About Us section">About Us</a></li>
+                <li><a href="#dresses" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Dresses section">Dresses</a></li>
+                <li><a href="#gallery" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Gallery section">Gallery</a></li>
+                <li><a href="#process" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Order Process section">Order Process</a></li>
+                <li><a href="#testimonials" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Testimonials section">Testimonials</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Contact section">Contact</a></li>
+                <!-- Quote Cart Icon -->
+                <li>
+                    <button id="view-quote-cart-button" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg relative" aria-label="View Quote Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="quote-cart-count" class="absolute -top-2 -right-2 bg-[#B8860B] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </button>
+                </li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 text-3xl focus:outline-none" aria-label="Open mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col items-center justify-center space-y-8 text-2xl md:hidden transition-transform transform -translate-y-full duration-300 ease-in-out" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+            <h2 id="mobile-menu-title" class="sr-only">Mobile Navigation</h2>
+            <button id="close-mobile-menu" class="absolute top-6 right-8 text-gray-600 text-4xl focus:outline-none" aria-label="Close mobile menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Home section">Home</a></li>
+                <li><a href="#about" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to About Us section">About Us</a></li>
+                <li><a href="#dresses" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Dresses section">Dresses</a></li>
+                <li><a href="#gallery" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Gallery section">Gallery</a></li>
+                <li><a href="#process" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Order Process section">Order Process</a></li>
+                <li><a href="#testimonials" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Testimonials section">Testimonials</a></li>
+                <li><a href="#contact" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Contact section">Contact</a></li>
+                <li>
+                    <button id="view-quote-cart-mobile-button" class="block py-4 text-gray-700 hover:text-[#B8860B] relative" aria-label="View Quote Cart">
+                        Quote Cart
+                        <span id="quote-cart-count-mobile" class="absolute -top-0 -right-6 bg-[#B8860B] text-white text-sm rounded-full h-6 w-6 flex items-center justify-center hidden">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white">
+        <div class="hero-content max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 drop-shadow-lg">Where Dreams Dress Up</h1>
+            <p class="text-xl md:text-2xl mb-10 drop-shadow-md">Crafting unforgettable moments with exquisite bridesmaid attire.</p>
+            <a href="#dresses" class="inline-block bg-[#B8860B] hover:bg-[#A0780A] text-white font-semibold py-4 px-10 rounded-full transition duration-300 ease-in-out shadow-xl transform hover:scale-105" aria-label="Discover Our Collection of Dresses">
+                Discover Our Collection <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 order-2 md:order-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Our Dedication to Your Perfect Day</h2>
+                <p class="text-lg leading-relaxed mb-4 text-gray-700">
+                    At EBB Bridesmaids, we are more than just a dress company; we are artisans of elegance.
+                    Every gown in our collection is a testament to meticulous design, luxurious fabrics, and a deep understanding
+                    of what makes a bridal party truly shine. We believe in creating dresses that are not only beautiful
+                    but also comfortable and flattering for every unique silhouette.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700">
+                    From the initial sketch to the final stitch, our commitment to perfection ensures that your bridesmaids
+                    will feel confident and radiant, perfectly complementing the bride's vision.
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-[#B8860B] hover:bg-[#A0780A] text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg" aria-label="Contact Us for inquiries">
+                    Contact Us Today <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+            <div class="md:w-1/2 order-1 md:order-2">
+                <!-- Updated to a publicly accessible image URL -->
+                <img src="https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids laughing" class="rounded-xl shadow-2xl w-full h-auto transform hover:scale-102 transition-transform duration-500" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Dresses/Products Section -->
+    <section id="dresses" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Our Exquisite Dress Collection</h2>
+
+            <!-- Dress Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="dress-filter-button bg-[#B8860B] text-white py-3 px-8 rounded-full hover:bg-[#A0780A] transition duration-300 shadow-lg text-lg" data-category="all" aria-controls="dresses-grid" aria-pressed="true">All Styles</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="A-line" aria-controls="dresses-grid" aria-pressed="false">A-Line</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="mermaid" aria-controls="dresses-grid" aria-pressed="false">Mermaid</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="flowy" aria-controls="dresses-grid" aria-pressed="false">Flowy</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="short" aria-controls="dresses-grid" aria-pressed="false">Short</button>
+            </div>
+
+            <!-- Dresses Grid -->
+            <div id="dresses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Dress items will be dynamically loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Details Modal -->
+    <div id="dress-details-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dress-modal-title">
+        <div class="modal-content">
+            <span class="close-button" id="close-dress-modal" aria-label="Close dress details modal">&times;</span>
+            <div id="dress-modal-content" class="flex flex-col md:flex-row gap-8">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery/Lookbook Section -->
+    <section id="gallery" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12">A Glimpse of Our Bridesmaids</h2>
+            <p class="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+                Explore our gallery to see real bridal parties adorned in EBB Bridesmaids dresses,
+                showcasing the beauty and versatility of our collection.
+            </p>
+            <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Updated to publicly accessible image URLs -->
+                <img src="https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in pink dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in blue dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in green dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in champagne dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in purple dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in red dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in grey dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in yellow dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Process Section -->
+    <section id="process" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12">Your Journey to Perfect Dresses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-search text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">1. Discover & Select</h3>
+                    <p class="text-lg text-gray-700">Explore our diverse collection and choose the styles that capture your heart.</p>
+                </div>
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-palette text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">2. Customize & Confirm</h3>
+                    <p class="text-lg text-gray-700">Personalize with colors and sizes. Our team will guide you through the details.</p>
+                </div>
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-gift text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">3. Receive & Radiate</h3>
+                    <p class="text-lg text-gray-700">Your exquisite dresses arrive, ready for your bridal party to shine.</p>
+                </div>
+            </div>
+            <a href="#order-form-modal" class="mt-16 inline-block submit-button py-4 px-10 rounded-full cursor-pointer" aria-label="Begin your order with EBB Bridesmaids">
+                Begin Your Order <i class="fas fa-clipboard-list ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Order Form Modal (for Order Management & Customer Management Mock) -->
+    <div id="order-form-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+        <div class="modal-content">
+            <h3 id="order-modal-title" class="text-3xl font-bold text-center mb-8 text-[#B8860B]">Place Your Order Request</h3>
+            <span class="close-button" id="close-order-modal" aria-label="Close order form modal">&times;</span>
+            <form id="order-form" class="space-y-6">
+                <!-- Customer Information -->
+                <div>
+                    <label for="customer-name" class="block text-lg font-medium mb-2 text-gray-700">Your Full Name</label>
+                    <input type="text" id="customer-name" name="customer-name" required class="form-input">
+                </div>
+                <div>
+                    <label for="customer-email" class="block text-lg font-medium mb-2 text-gray-700">Email Address</label>
+                    <input type="email" id="customer-email" name="customer-email" required class="form-input">
+                </div>
+                <div>
+                    <label for="customer-phone" class="block text-lg font-medium mb-2 text-gray-700">Phone Number</label>
+                    <input type="tel" id="customer-phone" name="customer-phone" required class="form-input">
+                </div>
+                <div>
+                    <label for="shipping-address" class="block text-lg font-medium mb-2 text-gray-700">Shipping Address</label>
+                    <textarea id="shipping-address" name="shipping-address" rows="3" required class="form-input"></textarea>
+                </div>
+
+                <!-- Order Details (populated from quoteCart) -->
+                <div class="bg-gray-100 p-5 rounded-lg border border-gray-200">
+                    <h4 class="text-xl font-semibold mb-4 text-gray-800">Your Quote Request Summary</h4>
+                    <ul id="order-summary-list" class="space-y-2 text-gray-700">
+                        <!-- Items from quoteCart will be listed here -->
+                    </ul>
+                    <p class="font-bold text-lg pt-3 border-t border-gray-300 mt-3">Total Estimated: <span id="order-total">£0.00</span></p>
+                    <p class="text-sm text-gray-500 mt-3">
+                        *This is an estimated summary. Actual items and total will be confirmed by our team.
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full submit-button" aria-label="Submit your order request">
+                    Submit Order Request <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+            <div id="order-confirmation-message" class="mt-6 p-4 bg-green-100 text-green-800 rounded-lg hidden" role="alert">
+                <p class="font-semibold">Thank you for your order request!</p>
+                <p>We have received your details and will contact you shortly to finalize your order.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Hear From Our Happy Brides</h2>
+            <div class="testimonial-slider relative">
+                <div class="testimonial-container" id="testimonial-container" aria-live="polite" aria-atomic="true">
+                    <!-- Testimonials will be dynamically loaded here -->
+                </div>
+                <button class="slider-button prev" id="prev-testimonial" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-button next" id="next-testimonial" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Connect With EBB Bridesmaids</h2>
+                <p class="text-lg mb-6 text-gray-700">
+                    Have questions, need personalized advice, or ready to start your order?
+                    Reach out to our dedicated team.
+                </p>
+                <address class="text-lg not-italic mb-6 text-gray-700">
+                    EBB Bridesmaids Showroom<br>
+                    123 Bridal Avenue, Wedding City, WC 10001<br>
+                    <i class="fas fa-phone-alt text-[#B8860B] mr-2"></i> Phone: <a href="tel:+1234567890" class="text-[#B8860B] hover:underline" aria-label="Call EBB Bridesmaids">+1 (234) 567-890</a><br>
+                    <i class="fas fa-envelope text-[#B8860B] mr-2"></i> Email: <a href="mailto:info@ebbbridesmaids.com" class="text-[#B8860B] hover:underline" aria-label="Email EBB Bridesmaids">info@ebbbridesmaids.com</a>
+                </address>
+                <div class="flex space-x-6 text-3xl">
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-white">
+                <!-- Google Maps Embed - Replace with your actual location -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0707416062836!2d7.5638829!3d9.0191487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ed5c0dba5c7%3A0x525ed342586a9b2e!2s30%20Noble%20Heights%20St%2C%20Karu%2C%20Abuja%20900110%2C%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1721322950000!5m2!1sen!2sng"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Our location on Google Maps">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-20 text-center">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-lg mb-2">&copy; 2025 EBB Bridesmaids. All rights reserved.</p>
+            <p class="text-md text-gray-400">Crafted with passion and elegance by Your Name/AI</p>
+        </div>
+    </footer>
+
+    <!-- Quote Cart Modal -->
+    <div id="quote-cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quote-cart-title">
+        <div class="modal-content">
+            <h3 id="quote-cart-title" class="text-3xl font-bold text-center mb-8 text-[#B8860B]">Your Quote Cart</h3>
+            <span class="close-button" id="close-quote-cart-modal" aria-label="Close quote cart modal">&times;</span>
+            <div id="quote-cart-items" class="space-y-4 mb-6">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+            <p class="font-bold text-xl text-right border-t border-gray-300 pt-4">Total Items: <span id="quote-cart-total-items">0</span></p>
+            <button id="proceed-to-order-button" class="w-full submit-button mt-6" aria-label="Proceed to order form">
+                Proceed to Order Form <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button id="clear-quote-cart-button" class="w-full bg-gray-300 text-gray-800 hover:bg-gray-400 py-3 px-8 rounded-full transition duration-300 ease-in-out mt-4" aria-label="Clear all items from quote cart">
+                Clear Cart <i class="fas fa-trash-alt ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Global Variables ---
+        let quoteCart = JSON.parse(localStorage.getItem('ebbBridesmaidsQuoteCart')) || [];
+        let activeProductCard = null; // To keep track of the currently highlighted product card
+
+        // --- Utility Functions for Modals ---
+        function openModal(modalElement) {
+            modalElement.style.display = 'flex';
+            setTimeout(() => modalElement.classList.add('show'), 10); // Trigger CSS transition
+            modalElement.querySelector('.modal-content').focus(); // Focus on modal content
+            trapFocus(modalElement);
+        }
+
+        function closeModal(modalElement) {
+            modalElement.classList.remove('show');
+            modalElement.addEventListener('transitionend', function handler() {
+                modalElement.style.display = 'none';
+                modalElement.removeEventListener('transitionend', handler);
+            }, { once: true });
+            releaseFocus();
+        }
+
+        // --- Focus Trapping for Modals ---
+        let focusedElementBeforeModal;
+
+        function trapFocus(modalElement) {
+            focusedElementBeforeModal = document.activeElement;
+            const focusableElements = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            modalElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { // If Shift + Tab
+                        if (document.activeElement === firstFocusableElement) {
+                            lastFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    } else { // If Tab
+                        if (document.activeElement === lastFocusableElement) {
+                            firstFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+            firstFocusableElement.focus(); // Focus on the first element when modal opens
+        }
+
+        function releaseFocus() {
+            if (focusedElementBeforeModal) {
+                focusedElementBeforeModal.focus();
+                focusedElementBeforeModal = null;
+            }
+        }
+
+        // --- Close Modals on Escape Key ---
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal.show');
+                openModals.forEach(modal => closeModal(modal));
+            }
+        });
+
+        // --- Notification Message Function ---
+        function showNotification(message, type = 'success') {
+            const notificationElement = document.getElementById('notification-message');
+            notificationElement.textContent = message;
+
+            // Reset classes
+            notificationElement.classList.remove('bg-green-600', 'bg-red-600', 'hidden', 'opacity-0');
+
+            if (type === 'success') {
+                notificationElement.classList.add('bg-green-600');
+            } else if (type === 'error') {
+                notificationElement.classList.add('bg-red-600');
+            }
+
+            // Show with fade-in
+            notificationElement.classList.remove('hidden');
+            setTimeout(() => notificationElement.classList.add('opacity-100'), 10);
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notificationElement.classList.remove('opacity-100');
+                notificationElement.addEventListener('transitionend', function handler() {
+                    notificationElement.classList.add('hidden');
+                    notificationElement.removeEventListener('transitionend', handler);
+                }, { once: true });
+            }, 3000);
+        }
+
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            showMobileMenu();
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            hideMobileMenu();
+        });
+
+        function showMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.remove('-translate-y-full');
+            }, 10);
+            trapFocus(mobileMenu);
+        }
+
+        function hideMobileMenu() {
+            mobileMenu.classList.add('-translate-y-full');
+            mobileMenu.addEventListener('transitionend', function handler() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.removeEventListener('transitionend', handler);
+            }, { once: true });
+            releaseFocus();
+        }
+
+
+        // --- Product Management (Client-Side Mock) ---
+        const dresses = [
+            {
+                id: 'dress-001',
+                name: "Grace A-Line Gown",
+                description: "A timeless A-line gown with delicate lace detailing and a flowing skirt, perfect for any wedding theme. Features a flattering V-neckline and a comfortable, breathable lining.",
+                price: 180.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Blush Pink", "Dusty Blue", "Sage Green", "Champagne"],
+                sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-002',
+                name: "Serenity Mermaid Dress",
+                description: "Elegant mermaid silhouette that hugs the body, featuring a sweetheart neckline and subtle shimmer fabric. Designed to enhance curves and provide a sophisticated look.",
+                price: 195.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "mermaid",
+                colors: ["Navy Blue", "Emerald Green", "Burgundy", "Silver"],
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 'dress-003',
+                name: "Dreamy Flowy Chiffon",
+                description: "Lightweight chiffon gown with a relaxed fit and ethereal drape, perfect for outdoor or bohemian weddings. Features adjustable straps and a comfortable elastic waist.",
+                price: 170.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Lavender", "Sky Blue", "Champagne", "Peach"],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-004',
+                name: "Chic Short Cocktail",
+                description: "A playful short dress with elegant pleats and a flattering A-line cut, ideal for a modern or less formal celebration. Perfect for dancing the night away.",
+                price: 120.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "short",
+                colors: ["Coral", "Mint Green", "Silver", "Navy Blue"],
+                sizes: ["XS", "S", "M", "L"]
+            },
+            {
+                id: 'dress-005',
+                name: "Classic Ball Gown",
+                description: "A full-skirted ball gown for a truly grand and traditional wedding, offering a regal and majestic presence.",
+                price: 220.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Ivory", "Soft Gold", "Rose Gold", "White"],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-006',
+                name: "Modern Sheath Dress",
+                description: "Sleek and contemporary sheath dress, offering a sophisticated and minimalist look. Features a high slit for ease of movement and a modern touch.",
+                price: 160.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Charcoal Gray", "White", "Black", "Navy Blue"],
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 'dress-007',
+                name: "Romantic Off-Shoulder",
+                description: "A romantic off-shoulder gown with delicate ruffles and a flattering silhouette, perfect for a whimsical wedding.",
+                price: 185.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Light Pink", "Cream", "Periwinkle"],
+                sizes: ["S", "M", "L"]
+            },
+            {
+                id: 'dress-008',
+                name: "Satin Slip Dress",
+                description: "Luxurious satin slip dress with a cowl neck, offering a sleek and effortlessly chic look.",
+                price: 150.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Bronze", "Emerald", "Champagne"],
+                sizes: ["XS", "S", "M", "L"]
+            }
+        ];
+
+        const dressesGrid = document.getElementById('dresses-grid');
+        const dressFilterButtons = document.querySelectorAll('.dress-filter-button');
+        const dressDetailsModal = document.getElementById('dress-details-modal');
+        const closeDressModalButton = document.getElementById('close-dress-modal');
+        const dressModalContent = document.getElementById('dress-modal-content');
+        const quoteCartCount = document.getElementById('quote-cart-count');
+        const quoteCartCountMobile = document.getElementById('quote-cart-count-mobile');
+
+
+        // Function to display dresses
+        function displayDresses(category = 'all') {
+            dressesGrid.innerHTML = ''; // Clear current items
+
+            // Reset aria-pressed for all filter buttons
+            dressFilterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+            // Set aria-pressed for the active button
+            document.querySelector(`.dress-filter-button[data-category="${category}"]`).setAttribute('aria-pressed', 'true');
+
+
+            const filteredDresses = category === 'all'
+                ? dresses
+                : dresses.filter(dress => dress.category.toLowerCase() === category.toLowerCase());
+
+            if (filteredDresses.length === 0) {
+                dressesGrid.innerHTML = '<p class="text-center text-xl text-gray-600 col-span-full py-10">No dresses found for this category. Please check back soon!</p>';
+                return;
+            }
+
+            filteredDresses.forEach(dress => {
+                const dressCard = document.createElement('div');
+                dressCard.classList.add('product-card', 'bg-white', 'p-6', 'rounded-xl', 'shadow-lg', 'cursor-pointer');
+                dressCard.setAttribute('tabindex', '0'); // Make card focusable
+                dressCard.setAttribute('role', 'button'); // Indicate it's clickable
+                dressCard.setAttribute('aria-label', `View details for ${dress.name}`);
+
+
+                dressCard.innerHTML = `
+                    <img src="${dress.image}" alt="${dress.name}" class="product-image mb-4" loading="lazy">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">${dress.name}</h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">${dress.description}</p>
+                    <p class="text-[#B8860B] text-xl font-semibold">£${dress.price.toFixed(2)}</p>
+                `;
+                dressCard.addEventListener('click', () => {
+                    if (activeProductCard) {
+                        activeProductCard.classList.remove('active-highlight');
+                    }
+                    dressCard.classList.add('active-highlight');
+                    activeProductCard = dressCard;
+                    openDressDetailsModal(dress);
+                });
+                dressesGrid.appendChild(dressCard);
+            });
+        }
+
+        // Event listeners for dress filter buttons
+        dressFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button styling
+                dressFilterButtons.forEach(btn => {
+                    btn.classList.remove('bg-[#B8860B]', 'text-white');
+                    btn.classList.add('bg-gray-300', 'text-gray-800');
+                });
+                button.classList.remove('bg-gray-300', 'text-gray-800');
+                button.classList.add('bg-[#B8860B]', 'text-white');
+
+                // Filter and display dresses
+                const category = button.dataset.category;
+                displayDresses(category);
+            });
+        });
+
+        // Function to open dress details modal
+        function openDressDetailsModal(dress) {
+            let colorsHtml = dress.colors.map(color => `<span class="inline-block px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700">${color}</span>`).join(' ');
+            let sizesHtml = dress.sizes.map(size => `<span class="inline-block px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700">${size}</span>`).join(' ');
+
+            dressModalContent.innerHTML = `
+                <div class="md:w-1/2">
+                    <img src="${dress.image}" alt="${dress.name}" class="rounded-lg shadow-xl w-full h-auto object-cover max-h-96 border border-gray-200" loading="lazy">
+                </div>
+                <div class="md:w-1/2 flex flex-col justify-between">
+                    <div>
+                        <h3 id="dress-modal-title" class="text-3xl font-bold mb-3 text-[#B8860B]">${dress.name}</h3>
+                        <p class="text-gray-700 mb-4">${dress.description}</p>
+                        <p class="text-3xl font-semibold text-gray-900 mb-4">£${dress.price.toFixed(2)}</p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-lg mb-2 text-gray-800">Available Colors:</h4>
+                            <div class="flex flex-wrap gap-2">${colorsHtml}</div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-lg mb-2 text-gray-800">Available Sizes:</h4>
+                            <div class="flex flex-wrap gap-2">${sizesHtml}</div>
+                        </div>
+                    </div>
+                    <button id="add-to-quote-button" class="w-full submit-button" data-dress-id="${dress.id}" aria-label="Add ${dress.name} to quote cart">
+                        Add to Quote Request <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">
+                        *This is a mock 'Add to Quote Request'. For actual orders, a shopping cart and backend are needed.
+                    </p>
+                </div>
+            `;
+            openModal(dressDetailsModal); // Use the new openModal function
+
+            // Add event listener for "Add to Quote Request" button
+            document.getElementById('add-to-quote-button').addEventListener('click', (event) => {
+                const dressId = event.currentTarget.dataset.dressId;
+                const selectedDress = dresses.find(d => d.id === dressId);
+                if (selectedDress) {
+                    addToQuoteCart(selectedDress);
+                    closeModal(dressDetailsModal); // Close modal after adding to cart
+                }
+            });
+        }
+
+        // Close dress details modal
+        closeDressModalButton.addEventListener('click', () => {
+            closeModal(dressDetailsModal);
+            if (activeProductCard) {
+                activeProductCard.classList.remove('active-highlight');
+                activeProductCard = null;
+            }
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === dressDetailsModal) {
+                closeModal(dressDetailsModal);
+                if (activeProductCard) {
+                    activeProductCard.classList.remove('active-highlight');
+                    activeProductCard = null;
+                }
+            }
+        });
+
+        // Initial display of all dresses
+        displayDresses();
+
+        // --- Quote Cart Logic ---
+        function updateQuoteCartDisplay() {
+            const count = quoteCart.length;
+            quoteCartCount.textContent = count;
+            quoteCartCountMobile.textContent = count;
+            if (count > 0) {
+                quoteCartCount.classList.remove('hidden');
+                quoteCartCountMobile.classList.remove('hidden');
+            } else {
+                quoteCartCount.classList.add('hidden');
+                quoteCartCountMobile.classList.add('hidden');
+            }
+
+            const quoteCartItemsContainer = document.getElementById('quote-cart-items');
+            const orderSummaryList = document.getElementById('order-summary-list');
+            let totalEstimatedPrice = 0;
+            quoteCartItemsContainer.innerHTML = ''; // Clear existing items
+            orderSummaryList.innerHTML = ''; // Clear existing items in order form
+
+            if (quoteCart.length === 0) {
+                quoteCartItemsContainer.innerHTML = '<p class="text-gray-600 text-center">Your quote cart is empty.</p>';
+                orderSummaryList.innerHTML = '<li>No items added to quote.</li>';
+            } else {
+                quoteCart.forEach(item => {
+                    // For quote cart modal
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('flex', 'justify-between', 'items-center', 'bg-gray-50', 'p-3', 'rounded-lg');
+                    itemDiv.innerHTML = `
+                        <span>${item.name} (${item.selectedColor || 'N/A'}, ${item.selectedSize || 'N/A'})</span>
+                        <span class="font-semibold">£${item.price.toFixed(2)}</span>
+                    `;
+                    quoteCartItemsContainer.appendChild(itemDiv);
+
+                    // For order form summary
+                    const orderItemLi = document.createElement('li');
+                    orderItemLi.textContent = `${item.name} (${item.selectedColor || 'N/A'}, ${item.selectedSize || 'N/A'}) - £${item.price.toFixed(2)}`;
+                    orderSummaryList.appendChild(orderItemLi);
+
+                    totalEstimatedPrice += item.price;
+                });
+            }
+            document.getElementById('order-total').textContent = `£${totalEstimatedPrice.toFixed(2)}`;
+            localStorage.setItem('ebbBridesmaidsQuoteCart', JSON.stringify(quoteCart));
+        }
+
+        function addToQuoteCart(dress) {
+            // In a real scenario, you'd let the user pick color/size in the modal
+            // For this mock, we'll just add the base dress
+            const itemToAdd = {
+                id: dress.id,
+                name: dress.name,
+                price: dress.price,
+                // Mocking selected color/size for display purposes
+                selectedColor: dress.colors[0] || 'Default Color',
+                selectedSize: dress.sizes[0] || 'Default Size'
+            };
+            quoteCart.push(itemToAdd);
+            updateQuoteCartDisplay();
+            // Show a custom notification instead of alert
+            showNotification(`${dress.name} added to your quote cart!`, 'success');
+        }
+
+        function clearQuoteCart() {
+            quoteCart = [];
+            updateQuoteCartDisplay();
+            showNotification('Quote cart cleared!', 'success');
+        }
+
+        // Event listeners for Quote Cart buttons
+        const quoteCartModal = document.getElementById('quote-cart-modal');
+        const closeQuoteCartModalButton = document.getElementById('close-quote-cart-modal');
+        const viewQuoteCartButton = document.getElementById('view-quote-cart-button');
+        const viewQuoteCartMobileButton = document.getElementById('view-quote-cart-mobile-button');
+        const proceedToOrderButton = document.getElementById('proceed-to-order-button');
+        const clearQuoteCartButton = document.getElementById('clear-quote-cart-button');
+        const orderFormModal = document.getElementById('order-form-modal');
+
+
+        viewQuoteCartButton.addEventListener('click', () => openModal(quoteCartModal));
+        viewQuoteCartMobileButton.addEventListener('click', () => {
+            hideMobileMenu(); // Close mobile menu first
+            openModal(quoteCartModal);
+        });
+        closeQuoteCartModalButton.addEventListener('click', () => closeModal(quoteCartModal));
+        window.addEventListener('click', (event) => {
+            if (event.target === quoteCartModal) {
+                closeModal(quoteCartModal);
+            }
+        });
+
+        proceedToOrderButton.addEventListener('click', () => {
+            closeModal(quoteCartModal);
+            openModal(orderFormModal);
+        });
+
+        clearQuoteCartButton.addEventListener('click', clearQuoteCart);
+
+
+        // --- Order Management (Client-Side Mock) ---
+        const startOrderButton = document.getElementById('start-order-button');
+        const closeOrderModalButton = document.getElementById('close-order-modal');
+        const orderForm = document.getElementById('order-form');
+        const orderConfirmationMessage = document.getElementById('order-confirmation-message');
+
+        // This event listener was missing, causing the "Begin Your Order" button to not open the modal
+        document.querySelector('a[href="#order-form-modal"]').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor link behavior
+            openModal(orderFormModal);
+            orderConfirmationMessage.classList.add('hidden'); // Hide previous confirmation
+            orderForm.reset(); // Reset form fields
+        });
+
+        closeOrderModalButton.addEventListener('click', () => closeModal(orderFormModal));
+        window.addEventListener('click', (event) => {
+            if (event.target === orderFormModal) {
+                closeModal(orderFormModal);
+            }
+        });
+
+        orderForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerPhone = document.getElementById('customer-phone').value;
+            const shippingAddress = document.getElementById('shipping-address').value;
+
+            // Basic client-side validation
+            if (!customerName || !customerEmail || !customerPhone || !shippingAddress) {
+                orderConfirmationMessage.classList.remove('hidden');
+                orderConfirmationMessage.classList.remove('bg-green-100', 'text-green-800');
+                orderConfirmationMessage.classList.add('bg-red-100', 'text-red-800');
+                orderConfirmationMessage.innerHTML = `<p class="font-semibold">Please fill in all required fields.</p>`;
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(customerEmail)) {
+                orderConfirmationMessage.classList.remove('hidden');
+                orderConfirmationMessage.classList.remove('bg-green-100', 'text-green-800');
+                orderConfirmationMessage.classList.add('bg-red-100', 'text-red-800');
+                orderConfirmationMessage.innerHTML = `<p class="font-semibold">Please enter a valid email address.</p>`;
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Simulate order submission
+            console.log('Order Request Submitted:', {
+                customerName,
+                customerEmail,
+                customerPhone,
+                shippingAddress,
+                quoteCartItems: quoteCart // Send the actual cart items
+            });
+
+            // Show success message
+            orderConfirmationMessage.classList.remove('hidden');
+            orderConfirmationMessage.classList.remove('bg-red-100', 'text-red-800');
+            orderConfirmationMessage.classList.add('bg-green-100', 'text-green-800');
+            orderConfirmationMessage.innerHTML = `<p class="font-semibold">Thank you for your order request!</p><p>We have received your details and will contact you shortly to finalize your order.</p>`;
+            showNotification('Order request submitted successfully!', 'success');
+
+
+            // In a real application, you would send this data to a backend (e.g., using fetch API)
+            // Example: fetch('/api/orders', { method: 'POST', body: JSON.stringify(orderData) });
+
+            orderForm.reset(); // Clear the form
+            clearQuoteCart(); // Clear the cart after submitting the order request
+        });
+
+        // --- Testimonial Slider Logic ---
+        const testimonials = [
+            {
+                quote: "EBB Bridesmaids made finding dresses for my bridal party an absolute dream! The quality is exceptional and the styles are simply breathtaking.",
+                author: "Sarah J.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e6e6/8b4513?text=SJ" /* Placeholder for avatar */
+            },
+            {
+                quote: "The 'Grace' A-Line Gown was perfect for my bridesmaids. They all looked stunning and felt comfortable all day. The process was seamless!",
+                author: "Jessica L.",
+                rating: 5,
+                image: "https://placehold.co/100x100/e6f0e6/8b4513?text=JL"
+            },
+            {
+                quote: "Fantastic customer service and beautiful designs. Highly recommend EBB for your bridal party needs. They truly care about your vision.",
+                author: "Maria P.",
+                rating: 4,
+                image: "https://placehold.co/100x100/e6e6f0/8b4513?text=MP"
+            },
+            {
+                quote: "We ordered the 'Dreamy Flowy Chiffon' dresses, and they were exactly what we envisioned for our outdoor wedding. So light and elegant!",
+                author: "Chloe R.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e6f0/8b4513?text=CR"
+            },
+            {
+                quote: "The attention to detail and the range of sizes made everyone feel included and beautiful. EBB is simply the best!",
+                author: "Olivia M.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e0f0/8b4513?text=OM"
+            }
+        ];
+
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const prevTestimonialButton = document.getElementById('prev-testimonial');
+        const nextTestimonialButton = document.getElementById('next-testimonial');
+        let currentTestimonialIndex = 0;
+
+        function displayTestimonials() {
+            testimonialContainer.innerHTML = ''; // Clear current testimonials
+
+            testimonials.forEach((testimonial, index) => {
+                const testimonialItemDiv = document.createElement('div');
+                testimonialItemDiv.classList.add('testimonial-item', 'bg-white', 'p-8', 'rounded-xl', 'shadow-md', 'text-center', 'flex-shrink-0');
+                testimonialItemDiv.setAttribute('tabindex', '0'); // Make testimonial focusable
+                testimonialItemDiv.setAttribute('role', 'group'); // Indicate it's a group of content
+                testimonialItemDiv.setAttribute('aria-roledescription', 'testimonial');
+                testimonialItemDiv.setAttribute('aria-label', `Testimonial from ${testimonial.author}, rated ${testimonial.rating} out of 5 stars.`);
+
+
+                if (index === currentTestimonialIndex) {
+                    testimonialItemDiv.classList.add('active'); // Add active class for fade-in
+                } else {
+                    testimonialItemDiv.style.display = 'none'; // Hide non-current testimonials
+                }
+
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += `<i class="fas fa-star ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}" aria-hidden="true"></i>`;
+                }
+
+                testimonialItemDiv.innerHTML = `
+                    <img src="${testimonial.image}" alt="Avatar of ${testimonial.author}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-[#B8860B] shadow-md" loading="lazy">
+                    <p class="text-xl italic mb-4 text-gray-700 leading-relaxed">"${testimonial.quote}"</p>
+                    <div class="text-2xl mb-2" role="img" aria-label="${testimonial.rating} out of 5 stars">${stars}</div>
+                    <p class="text-lg font-semibold text-gray-800">- ${testimonial.author}</p>
+                `;
+                testimonialContainer.appendChild(testimonialItemDiv);
+            });
+            updateTestimonialDisplay(); // Ensure correct item is shown initially
+        }
+
+        function showNextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        function showPrevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        function updateTestimonialDisplay() {
+            const items = testimonialContainer.querySelectorAll('.testimonial-item');
+            items.forEach((item, index) => {
+                if (index === currentTestimonialIndex) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.add('active'), 10); // Add active class after display block
+                } else {
+                    item.classList.remove('active'); // Remove active class first
+                    item.addEventListener('transitionend', function handler() {
+                        item.style.display = 'none';
+                        item.removeEventListener('transitionend', handler);
+                    }, { once: true });
+                }
+            });
+        }
+
+        prevTestimonialButton.addEventListener('click', showPrevTestimonial);
+        nextTestimonialButton.addEventListener('click', showNextTestimonial);
+
+        // Initial display of testimonials
+        displayTestimonials();
+        // Set up auto-slide for testimonials
+        setInterval(showNextTestimonial, 7000); // Change testimonial every 7 seconds
+
+        // Initialize quote cart display on load
+        updateQuoteCartDisplay();
+
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBB Bridesmaids - Where Dreams Dress Up</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for EBB Bridesmaids V2 */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #3a3a3a; /* Slightly darker soft gray */
+            background-color: #fcfcfc; /* Very light background */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #333333; /* Dark grey for headings, blending with logo */
+        }
+
+        /* Hero Section with refined overlay and animation */
+        .hero-section {
+            /* Updated to a publicly accessible image URL */
+            background-image: url('https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInScale 1.5s ease-out forwards;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Product card image styling */
+        .product-image {
+            width: 100%;
+            height: 320px; /* Slightly taller for more impact */
+            object-fit: cover;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .product-card.active-highlight {
+            border: 3px solid #B8860B; /* Highlight color: DarkGoldenrod */
+            box-shadow: 0 0 0 5px rgba(184, 134, 11, 0.4);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        /* Testimonial slider specific styles */
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-container {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+        }
+        .testimonial-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fefefe, #f9f9f9); /* Subtle gradient */
+            border: 1px solid #eee;
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.5s ease-in-out;
+        }
+        .testimonial-item.active {
+            opacity: 1; /* Fade in active item */
+        }
+        .slider-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.8rem 1.2rem; /* Slightly larger buttons */
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 1.8rem; /* Larger icons */
+        }
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slider-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.3s ease-out;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content {
+            animation: slideInFromTop 0.4s ease-out forwards;
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom form styling for elegance */
+        .form-input {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .form-input:focus {
+            border-color: #B8860B; /* DarkGoldenrod for focus */
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.25);
+        }
+        .submit-button {
+            background-color: #B8860B; /* DarkGoldenrod */
+            color: white;
+            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.4);
+        }
+        .submit-button:hover {
+            background-color: #A0780A; /* Darker goldenrod */
+            box-shadow: 0 6px 15px rgba(184, 134, 11, 0.6);
+        }
+
+        /* Gallery Section specific styles */
+        .gallery-grid img {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Notification Message Area -->
+    <div id="notification-message" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-[101] hidden opacity-0 transition-opacity duration-300" role="status" aria-live="polite">
+        <!-- Message will be inserted here -->
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto">
+            <!-- Logo Section -->
+            <a href="#home" class="flex items-center space-x-3 transition-transform duration-300 hover:scale-105" aria-label="EBB Bridesmaids Home">
+                <!-- IMPORTANT: Replace this URL with your actual logo's URL for it to display -->
+                <!-- The placeholder below is styled to visually match the logo's colors -->
+                <img src="logo.jpeg" alt="EBB Bridesmaids Logo" class="h-12 w-12 rounded-full shadow-md" loading="lazy">
+                <span class="text-3xl md:text-4xl font-bold text-[#333333] tracking-wider">EBB <span class="text-[#B8860B]">Bridesmaids</span></span>
+            </a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Home section">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to About Us section">About Us</a></li>
+                <li><a href="#dresses" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Dresses section">Dresses</a></li>
+                <li><a href="#gallery" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Gallery section">Gallery</a></li>
+                <li><a href="#process" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Order Process section">Order Process</a></li>
+                <li><a href="#testimonials" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Testimonials section">Testimonials</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg" aria-label="Navigate to Contact section">Contact</a></li>
+                <!-- Quote Cart Icon -->
+                <li>
+                    <button id="view-quote-cart-button" class="text-gray-600 hover:text-[#B8860B] font-medium transition duration-300 text-lg relative" aria-label="View Quote Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="quote-cart-count" class="absolute -top-2 -right-2 bg-[#B8860B] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </button>
+                </li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 text-3xl focus:outline-none" aria-label="Open mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col items-center justify-center space-y-8 text-2xl md:hidden transition-transform transform -translate-y-full duration-300 ease-in-out" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+            <h2 id="mobile-menu-title" class="sr-only">Mobile Navigation</h2>
+            <button id="close-mobile-menu" class="absolute top-6 right-8 text-gray-600 text-4xl focus:outline-none" aria-label="Close mobile menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul>
+                <li><a href="#home" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Home section">Home</a></li>
+                <li><a href="#about" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to About Us section">About Us</a></li>
+                <li><a href="#dresses" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Dresses section">Dresses</a></li>
+                <li><a href="#gallery" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Gallery section">Gallery</a></li>
+                <li><a href="#process" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Order Process section">Order Process</a></li>
+                <li><a href="#testimonials" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Testimonials section">Testimonials</a></li>
+                <li><a href="#contact" class="block py-4 text-gray-700 hover:text-[#B8860B]" onclick="hideMobileMenu()" aria-label="Navigate to Contact section">Contact</a></li>
+                <li>
+                    <button id="view-quote-cart-mobile-button" class="block py-4 text-gray-700 hover:text-[#B8860B] relative" aria-label="View Quote Cart">
+                        Quote Cart
+                        <span id="quote-cart-count-mobile" class="absolute -top-0 -right-6 bg-[#B8860B] text-white text-sm rounded-full h-6 w-6 flex items-center justify-center hidden">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white">
+        <div class="hero-content max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 drop-shadow-lg">Where Dreams Dress Up</h1>
+            <p class="text-xl md:text-2xl mb-10 drop-shadow-md">Crafting unforgettable moments with exquisite bridesmaid attire.</p>
+            <a href="#dresses" class="inline-block bg-[#B8860B] hover:bg-[#A0780A] text-white font-semibold py-4 px-10 rounded-full transition duration-300 ease-in-out shadow-xl transform hover:scale-105" aria-label="Discover Our Collection of Dresses">
+                Discover Our Collection <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 order-2 md:order-1">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Our Dedication to Your Perfect Day</h2>
+                <p class="text-lg leading-relaxed mb-4 text-gray-700">
+                    At EBB Bridesmaids, we are more than just a dress company; we are artisans of elegance.
+                    Every gown in our collection is a testament to meticulous design, luxurious fabrics, and a deep understanding
+                    of what makes a bridal party truly shine. We believe in creating dresses that are not only beautiful
+                    but also comfortable and flattering for every unique silhouette.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700">
+                    From the initial sketch to the final stitch, our commitment to perfection ensures that your bridesmaids
+                    will feel confident and radiant, perfectly complementing the bride's vision.
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-[#B8860B] hover:bg-[#A0780A] text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg" aria-label="Contact Us for inquiries">
+                    Contact Us Today <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+            <div class="md:w-1/2 order-1 md:order-2">
+                <!-- Updated to a publicly accessible image URL -->
+                <img src="https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids laughing" class="rounded-xl shadow-2xl w-full h-auto transform hover:scale-102 transition-transform duration-500" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Dresses/Products Section -->
+    <section id="dresses" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Our Exquisite Dress Collection</h2>
+
+            <!-- Dress Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="dress-filter-button bg-[#B8860B] text-white py-3 px-8 rounded-full hover:bg-[#A0780A] transition duration-300 shadow-lg text-lg" data-category="all" aria-controls="dresses-grid" aria-pressed="true">All Styles</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="A-line" aria-controls="dresses-grid" aria-pressed="false">A-Line</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="mermaid" aria-controls="dresses-grid" aria-pressed="false">Mermaid</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="flowy" aria-controls="dresses-grid" aria-pressed="false">Flowy</button>
+                <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition duration-300 shadow-md text-lg" data-category="short" aria-controls="dresses-grid" aria-pressed="false">Short</button>
+            </div>
+
+            <!-- Dresses Grid -->
+            <div id="dresses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Dress items will be dynamically loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Details Modal -->
+    <div id="dress-details-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="dress-modal-title">
+        <div class="modal-content">
+            <span class="close-button" id="close-dress-modal" aria-label="Close dress details modal">&times;</span>
+            <div id="dress-modal-content" class="flex flex-col md:flex-row gap-8">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery/Lookbook Section -->
+    <section id="gallery" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12">A Glimpse of Our Bridesmaids</h2>
+            <p class="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+                Explore our gallery to see real bridal parties adorned in EBB Bridesmaids dresses,
+                showcasing the beauty and versatility of our collection.
+            </p>
+            <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Updated to publicly accessible image URLs -->
+                <img src="https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in pink dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in blue dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in green dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in champagne dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in purple dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in red dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in grey dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Bridesmaids in yellow dresses" class="rounded-lg shadow-md w-full h-auto object-cover aspect-square" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Process Section -->
+    <section id="process" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12">Your Journey to Perfect Dresses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-search text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">1. Discover & Select</h3>
+                    <p class="text-lg text-gray-700">Explore our diverse collection and choose the styles that capture your heart.</p>
+                </div>
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-palette text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">2. Customize & Confirm</h3>
+                    <p class="text-lg text-gray-700">Personalize with colors and sizes. Our team will guide you through the details.</p>
+                </div>
+                <div class="p-8 rounded-xl shadow-xl bg-white transform hover:translate-y-[-5px] transition duration-300">
+                    <i class="fas fa-gift text-6xl text-[#B8860B] mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800">3. Receive & Radiate</h3>
+                    <p class="text-lg text-gray-700">Your exquisite dresses arrive, ready for your bridal party to shine.</p>
+                </div>
+            </div>
+            <a href="#order-form-modal" class="mt-16 inline-block submit-button py-4 px-10 rounded-full cursor-pointer" aria-label="Begin your order with EBB Bridesmaids">
+                Begin Your Order <i class="fas fa-clipboard-list ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Order Form Modal (for Order Management & Customer Management Mock) -->
+    <div id="order-form-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+        <div class="modal-content">
+            <h3 id="order-modal-title" class="text-3xl font-bold text-center mb-8 text-[#B8860B]">Place Your Order Request</h3>
+            <span class="close-button" id="close-order-modal" aria-label="Close order form modal">&times;</span>
+            <form id="order-form" class="space-y-6">
+                <!-- Customer Information -->
+                <div>
+                    <label for="customer-name" class="block text-lg font-medium mb-2 text-gray-700">Your Full Name</label>
+                    <input type="text" id="customer-name" name="customer-name" required class="form-input">
+                </div>
+                <div>
+                    <label for="customer-email" class="block text-lg font-medium mb-2 text-gray-700">Email Address</label>
+                    <input type="email" id="customer-email" name="customer-email" required class="form-input">
+                </div>
+                <div>
+                    <label for="customer-phone" class="block text-lg font-medium mb-2 text-gray-700">Phone Number</label>
+                    <input type="tel" id="customer-phone" name="customer-phone" required class="form-input">
+                </div>
+                <div>
+                    <label for="shipping-address" class="block text-lg font-medium mb-2 text-gray-700">Shipping Address</label>
+                    <textarea id="shipping-address" name="shipping-address" rows="3" required class="form-input"></textarea>
+                </div>
+
+                <!-- Order Details (populated from quoteCart) -->
+                <div class="bg-gray-100 p-5 rounded-lg border border-gray-200">
+                    <h4 class="text-xl font-semibold mb-4 text-gray-800">Your Quote Request Summary</h4>
+                    <ul id="order-summary-list" class="space-y-2 text-gray-700">
+                        <!-- Items from quoteCart will be listed here -->
+                    </ul>
+                    <p class="font-bold text-lg pt-3 border-t border-gray-300 mt-3">Total Estimated: <span id="order-total">£0.00</span></p>
+                    <p class="text-sm text-gray-500 mt-3">
+                        *This is an estimated summary. Actual items and total will be confirmed by our team.
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full submit-button" aria-label="Submit your order request">
+                    Submit Order Request <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+            <div id="order-confirmation-message" class="mt-6 p-4 bg-green-100 text-green-800 rounded-lg hidden" role="alert">
+                <p class="font-semibold">Thank you for your order request!</p>
+                <p>We have received your details and will contact you shortly to finalize your order.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Hear From Our Happy Brides</h2>
+            <div class="testimonial-slider relative">
+                <div class="testimonial-container" id="testimonial-container" aria-live="polite" aria-atomic="true">
+                    <!-- Testimonials will be dynamically loaded here -->
+                </div>
+                <button class="slider-button prev" id="prev-testimonial" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-button next" id="next-testimonial" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Connect With EBB Bridesmaids</h2>
+                <p class="text-lg mb-6 text-gray-700">
+                    Have questions, need personalized advice, or ready to start your order?
+                    Reach out to our dedicated team.
+                </p>
+                <address class="text-lg not-italic mb-6 text-gray-700">
+                    EBB Bridesmaids Showroom<br>
+                    123 Bridal Avenue, Wedding City, WC 10001<br>
+                    <i class="fas fa-phone-alt text-[#B8860B] mr-2"></i> Phone: <a href="tel:+1234567890" class="text-[#B8860B] hover:underline" aria-label="Call EBB Bridesmaids">+1 (234) 567-890</a><br>
+                    <i class="fas fa-envelope text-[#B8860B] mr-2"></i> Email: <a href="mailto:info@ebbbridesmaids.com" class="text-[#B8860B] hover:underline" aria-label="Email EBB Bridesmaids">info@ebbbridesmaids.com</a>
+                </address>
+                <div class="flex space-x-6 text-3xl">
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-[#B8860B] transition duration-300 transform hover:scale-110" aria-label="Visit us on Pinterest"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="w-full h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-white">
+                <!-- Google Maps Embed - Replace with your actual location -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0707416062836!2d7.5638829!3d9.0191487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ed5c0dba5c7%3A0x525ed342586a9b2e!2s30%20Noble%20Heights%20St%2C%20Karu%2C%20Abuja%20900110%2C%20Federal%20Capital%20Territory!5e0!3m2!1sen!2sng!4v1721322950000!5m2!1sen!2sng"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Our location on Google Maps">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 px-4 md:px-8 lg:px-20 text-center">
+        <div class="max-w-7xl mx-auto">
+            <p class="text-lg mb-2">&copy; 2025 EBB Bridesmaids. All rights reserved.</p>
+            <p class="text-md text-gray-400">Crafted with passion and elegance by Your Name/AI</p>
+        </div>
+    </footer>
+
+    <!-- Quote Cart Modal -->
+    <div id="quote-cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="quote-cart-title">
+        <div class="modal-content">
+            <h3 id="quote-cart-title" class="text-3xl font-bold text-center mb-8 text-[#B8860B]">Your Quote Cart</h3>
+            <span class="close-button" id="close-quote-cart-modal" aria-label="Close quote cart modal">&times;</span>
+            <div id="quote-cart-items" class="space-y-4 mb-6">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+            <p class="font-bold text-xl text-right border-t border-gray-300 pt-4">Total Items: <span id="quote-cart-total-items">0</span></p>
+            <button id="proceed-to-order-button" class="w-full submit-button mt-6" aria-label="Proceed to order form">
+                Proceed to Order Form <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+            <button id="clear-quote-cart-button" class="w-full bg-gray-300 text-gray-800 hover:bg-gray-400 py-3 px-8 rounded-full transition duration-300 ease-in-out mt-4" aria-label="Clear all items from quote cart">
+                Clear Cart <i class="fas fa-trash-alt ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Global Variables ---
+        let quoteCart = JSON.parse(localStorage.getItem('ebbBridesmaidsQuoteCart')) || [];
+        let activeProductCard = null; // To keep track of the currently highlighted product card
+
+        // --- Utility Functions for Modals ---
+        function openModal(modalElement) {
+            modalElement.style.display = 'flex';
+            setTimeout(() => modalElement.classList.add('show'), 10); // Trigger CSS transition
+            modalElement.querySelector('.modal-content').focus(); // Focus on modal content
+            trapFocus(modalElement);
+        }
+
+        function closeModal(modalElement) {
+            modalElement.classList.remove('show');
+            modalElement.addEventListener('transitionend', function handler() {
+                modalElement.style.display = 'none';
+                modalElement.removeEventListener('transitionend', handler);
+            }, { once: true });
+            releaseFocus();
+        }
+
+        // --- Focus Trapping for Modals ---
+        let focusedElementBeforeModal;
+
+        function trapFocus(modalElement) {
+            focusedElementBeforeModal = document.activeElement;
+            const focusableElements = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            modalElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { // If Shift + Tab
+                        if (document.activeElement === firstFocusableElement) {
+                            lastFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    } else { // If Tab
+                        if (document.activeElement === lastFocusableElement) {
+                            firstFocusableElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+            firstFocusableElement.focus(); // Focus on the first element when modal opens
+        }
+
+        function releaseFocus() {
+            if (focusedElementBeforeModal) {
+                focusedElementBeforeModal.focus();
+                focusedElementBeforeModal = null;
+            }
+        }
+
+        // --- Close Modals on Escape Key ---
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const openModals = document.querySelectorAll('.modal.show');
+                openModals.forEach(modal => closeModal(modal));
+            }
+        });
+
+        // --- Notification Message Function ---
+        function showNotification(message, type = 'success') {
+            const notificationElement = document.getElementById('notification-message');
+            notificationElement.textContent = message;
+
+            // Reset classes
+            notificationElement.classList.remove('bg-green-600', 'bg-red-600', 'hidden', 'opacity-0');
+
+            if (type === 'success') {
+                notificationElement.classList.add('bg-green-600');
+            } else if (type === 'error') {
+                notificationElement.classList.add('bg-red-600');
+            }
+
+            // Show with fade-in
+            notificationElement.classList.remove('hidden');
+            setTimeout(() => notificationElement.classList.add('opacity-100'), 10);
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notificationElement.classList.remove('opacity-100');
+                notificationElement.addEventListener('transitionend', function handler() {
+                    notificationElement.classList.add('hidden');
+                    notificationElement.removeEventListener('transitionend', handler);
+                }, { once: true });
+            }, 3000);
+        }
+
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            showMobileMenu();
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            hideMobileMenu();
+        });
+
+        function showMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.remove('-translate-y-full');
+            }, 10);
+            trapFocus(mobileMenu);
+        }
+
+        function hideMobileMenu() {
+            mobileMenu.classList.add('-translate-y-full');
+            mobileMenu.addEventListener('transitionend', function handler() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.removeEventListener('transitionend', handler);
+            }, { once: true });
+            releaseFocus();
+        }
+
+
+        // --- Product Management (Client-Side Mock) ---
+        const dresses = [
+            {
+                id: 'dress-001',
+                name: "Grace A-Line Gown",
+                description: "A timeless A-line gown with delicate lace detailing and a flowing skirt, perfect for any wedding theme. Features a flattering V-neckline and a comfortable, breathable lining.",
+                price: 180.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Blush Pink", "Dusty Blue", "Sage Green", "Champagne"],
+                sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-002',
+                name: "Serenity Mermaid Dress",
+                description: "Elegant mermaid silhouette that hugs the body, featuring a sweetheart neckline and subtle shimmer fabric. Designed to enhance curves and provide a sophisticated look.",
+                price: 195.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "mermaid",
+                colors: ["Navy Blue", "Emerald Green", "Burgundy", "Silver"],
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 'dress-003',
+                name: "Dreamy Flowy Chiffon",
+                description: "Lightweight chiffon gown with a relaxed fit and ethereal drape, perfect for outdoor or bohemian weddings. Features adjustable straps and a comfortable elastic waist.",
+                price: 170.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Lavender", "Sky Blue", "Champagne", "Peach"],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-004',
+                name: "Chic Short Cocktail",
+                description: "A playful short dress with elegant pleats and a flattering A-line cut, ideal for a modern or less formal celebration. Perfect for dancing the night away.",
+                price: 120.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1551028150-64b9f9368549?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "short",
+                colors: ["Coral", "Mint Green", "Silver", "Navy Blue"],
+                sizes: ["XS", "S", "M", "L"]
+            },
+            {
+                id: 'dress-005',
+                name: "Classic Ball Gown",
+                description: "A full-skirted ball gown for a truly grand and traditional wedding, offering a regal and majestic presence.",
+                price: 220.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1598514983010-0196424ac11a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Ivory", "Soft Gold", "Rose Gold", "White"],
+                sizes: ["S", "M", "L", "XL", "XXL"]
+            },
+            {
+                id: 'dress-006',
+                name: "Modern Sheath Dress",
+                description: "Sleek and contemporary sheath dress, offering a sophisticated and minimalist look. Features a high slit for ease of movement and a modern touch.",
+                price: 160.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1579383637146-a4f6d4d1e2e9?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Charcoal Gray", "White", "Black", "Navy Blue"],
+                sizes: ["XS", "S", "M", "L", "XL"]
+            },
+            {
+                id: 'dress-007',
+                name: "Romantic Off-Shoulder",
+                description: "A romantic off-shoulder gown with delicate ruffles and a flattering silhouette, perfect for a whimsical wedding.",
+                price: 185.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1600877903820-22c6e61f2249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "A-line",
+                colors: ["Light Pink", "Cream", "Periwinkle"],
+                sizes: ["S", "M", "L"]
+            },
+            {
+                id: 'dress-008',
+                name: "Satin Slip Dress",
+                description: "Luxurious satin slip dress with a cowl neck, offering a sleek and effortlessly chic look.",
+                price: 150.00, // Price in Pounds
+                image: "https://images.unsplash.com/photo-1577966952402-998822558668?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                category: "flowy",
+                colors: ["Bronze", "Emerald", "Champagne"],
+                sizes: ["XS", "S", "M", "L"]
+            }
+        ];
+
+        const dressesGrid = document.getElementById('dresses-grid');
+        const dressFilterButtons = document.querySelectorAll('.dress-filter-button');
+        const dressDetailsModal = document.getElementById('dress-details-modal');
+        const closeDressModalButton = document.getElementById('close-dress-modal');
+        const dressModalContent = document.getElementById('dress-modal-content');
+        const quoteCartCount = document.getElementById('quote-cart-count');
+        const quoteCartCountMobile = document.getElementById('quote-cart-count-mobile');
+
+
+        // Function to display dresses
+        function displayDresses(category = 'all') {
+            dressesGrid.innerHTML = ''; // Clear current items
+
+            // Reset aria-pressed for all filter buttons
+            dressFilterButtons.forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+            // Set aria-pressed for the active button
+            document.querySelector(`.dress-filter-button[data-category="${category}"]`).setAttribute('aria-pressed', 'true');
+
+
+            const filteredDresses = category === 'all'
+                ? dresses
+                : dresses.filter(dress => dress.category.toLowerCase() === category.toLowerCase());
+
+            if (filteredDresses.length === 0) {
+                dressesGrid.innerHTML = '<p class="text-center text-xl text-gray-600 col-span-full py-10">No dresses found for this category. Please check back soon!</p>';
+                return;
+            }
+
+            filteredDresses.forEach(dress => {
+                const dressCard = document.createElement('div');
+                dressCard.classList.add('product-card', 'bg-white', 'p-6', 'rounded-xl', 'shadow-lg', 'cursor-pointer');
+                dressCard.setAttribute('tabindex', '0'); // Make card focusable
+                dressCard.setAttribute('role', 'button'); // Indicate it's clickable
+                dressCard.setAttribute('aria-label', `View details for ${dress.name}`);
+
+
+                dressCard.innerHTML = `
+                    <img src="${dress.image}" alt="${dress.name}" class="product-image mb-4" loading="lazy">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800">${dress.name}</h3>
+                    <p class="text-gray-600 mb-3 line-clamp-2">${dress.description}</p>
+                    <p class="text-[#B8860B] text-xl font-semibold">£${dress.price.toFixed(2)}</p>
+                `;
+                dressCard.addEventListener('click', () => {
+                    if (activeProductCard) {
+                        activeProductCard.classList.remove('active-highlight');
+                    }
+                    dressCard.classList.add('active-highlight');
+                    activeProductCard = dressCard;
+                    openDressDetailsModal(dress);
+                });
+                dressesGrid.appendChild(dressCard);
+            });
+        }
+
+        // Event listeners for dress filter buttons
+        dressFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button styling
+                dressFilterButtons.forEach(btn => {
+                    btn.classList.remove('bg-[#B8860B]', 'text-white');
+                    btn.classList.add('bg-gray-300', 'text-gray-800');
+                });
+                button.classList.remove('bg-gray-300', 'text-gray-800');
+                button.classList.add('bg-[#B8860B]', 'text-white');
+
+                // Filter and display dresses
+                const category = button.dataset.category;
+                displayDresses(category);
+            });
+        });
+
+        // Function to open dress details modal
+        function openDressDetailsModal(dress) {
+            let colorsHtml = dress.colors.map(color => `<span class="inline-block px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700">${color}</span>`).join(' ');
+            let sizesHtml = dress.sizes.map(size => `<span class="inline-block px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700">${size}</span>`).join(' ');
+
+            dressModalContent.innerHTML = `
+                <div class="md:w-1/2">
+                    <img src="${dress.image}" alt="${dress.name}" class="rounded-lg shadow-xl w-full h-auto object-cover max-h-96 border border-gray-200" loading="lazy">
+                </div>
+                <div class="md:w-1/2 flex flex-col justify-between">
+                    <div>
+                        <h3 id="dress-modal-title" class="text-3xl font-bold mb-3 text-[#B8860B]">${dress.name}</h3>
+                        <p class="text-gray-700 mb-4">${dress.description}</p>
+                        <p class="text-3xl font-semibold text-gray-900 mb-4">£${dress.price.toFixed(2)}</p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-lg mb-2 text-gray-800">Available Colors:</h4>
+                            <div class="flex flex-wrap gap-2">${colorsHtml}</div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-lg mb-2 text-gray-800">Available Sizes:</h4>
+                            <div class="flex flex-wrap gap-2">${sizesHtml}</div>
+                        </div>
+                    </div>
+                    <button id="add-to-quote-button" class="w-full submit-button" data-dress-id="${dress.id}" aria-label="Add ${dress.name} to quote cart">
+                        Add to Quote Request <i class="fas fa-cart-plus ml-2"></i>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">
+                        *This is a mock 'Add to Quote Request'. For actual orders, a shopping cart and backend are needed.
+                    </p>
+                </div>
+            `;
+            openModal(dressDetailsModal); // Use the new openModal function
+
+            // Add event listener for "Add to Quote Request" button
+            document.getElementById('add-to-quote-button').addEventListener('click', (event) => {
+                const dressId = event.currentTarget.dataset.dressId;
+                const selectedDress = dresses.find(d => d.id === dressId);
+                if (selectedDress) {
+                    addToQuoteCart(selectedDress);
+                    closeModal(dressDetailsModal); // Close modal after adding to cart
+                }
+            });
+        }
+
+        // Close dress details modal
+        closeDressModalButton.addEventListener('click', () => {
+            closeModal(dressDetailsModal);
+            if (activeProductCard) {
+                activeProductCard.classList.remove('active-highlight');
+                activeProductCard = null;
+            }
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === dressDetailsModal) {
+                closeModal(dressDetailsModal);
+                if (activeProductCard) {
+                    activeProductCard.classList.remove('active-highlight');
+                    activeProductCard = null;
+                }
+            }
+        });
+
+        // Initial display of all dresses
+        displayDresses();
+
+        // --- Quote Cart Logic ---
+        function updateQuoteCartDisplay() {
+            const count = quoteCart.length;
+            quoteCartCount.textContent = count;
+            quoteCartCountMobile.textContent = count;
+            if (count > 0) {
+                quoteCartCount.classList.remove('hidden');
+                quoteCartCountMobile.classList.remove('hidden');
+            } else {
+                quoteCartCount.classList.add('hidden');
+                quoteCartCountMobile.classList.add('hidden');
+            }
+
+            const quoteCartItemsContainer = document.getElementById('quote-cart-items');
+            const orderSummaryList = document.getElementById('order-summary-list');
+            let totalEstimatedPrice = 0;
+            quoteCartItemsContainer.innerHTML = ''; // Clear existing items
+            orderSummaryList.innerHTML = ''; // Clear existing items in order form
+
+            if (quoteCart.length === 0) {
+                quoteCartItemsContainer.innerHTML = '<p class="text-gray-600 text-center">Your quote cart is empty.</p>';
+                orderSummaryList.innerHTML = '<li>No items added to quote.</li>';
+            } else {
+                quoteCart.forEach(item => {
+                    // For quote cart modal
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('flex', 'justify-between', 'items-center', 'bg-gray-50', 'p-3', 'rounded-lg');
+                    itemDiv.innerHTML = `
+                        <span>${item.name} (${item.selectedColor || 'N/A'}, ${item.selectedSize || 'N/A'})</span>
+                        <span class="font-semibold">£${item.price.toFixed(2)}</span>
+                    `;
+                    quoteCartItemsContainer.appendChild(itemDiv);
+
+                    // For order form summary
+                    const orderItemLi = document.createElement('li');
+                    orderItemLi.textContent = `${item.name} (${item.selectedColor || 'N/A'}, ${item.selectedSize || 'N/A'}) - £${item.price.toFixed(2)}`;
+                    orderSummaryList.appendChild(orderItemLi);
+
+                    totalEstimatedPrice += item.price;
+                });
+            }
+            document.getElementById('order-total').textContent = `£${totalEstimatedPrice.toFixed(2)}`;
+            localStorage.setItem('ebbBridesmaidsQuoteCart', JSON.stringify(quoteCart));
+        }
+
+        function addToQuoteCart(dress) {
+            // In a real scenario, you'd let the user pick color/size in the modal
+            // For this mock, we'll just add the base dress
+            const itemToAdd = {
+                id: dress.id,
+                name: dress.name,
+                price: dress.price,
+                // Mocking selected color/size for display purposes
+                selectedColor: dress.colors[0] || 'Default Color',
+                selectedSize: dress.sizes[0] || 'Default Size'
+            };
+            quoteCart.push(itemToAdd);
+            updateQuoteCartDisplay();
+            // Show a custom notification instead of alert
+            showNotification(`${dress.name} added to your quote cart!`, 'success');
+        }
+
+        function clearQuoteCart() {
+            quoteCart = [];
+            updateQuoteCartDisplay();
+            showNotification('Quote cart cleared!', 'success');
+        }
+
+        // Event listeners for Quote Cart buttons
+        const quoteCartModal = document.getElementById('quote-cart-modal');
+        const closeQuoteCartModalButton = document.getElementById('close-quote-cart-modal');
+        const viewQuoteCartButton = document.getElementById('view-quote-cart-button');
+        const viewQuoteCartMobileButton = document.getElementById('view-quote-cart-mobile-button');
+        const proceedToOrderButton = document.getElementById('proceed-to-order-button');
+        const clearQuoteCartButton = document.getElementById('clear-quote-cart-button');
+        const orderFormModal = document.getElementById('order-form-modal');
+
+
+        viewQuoteCartButton.addEventListener('click', () => openModal(quoteCartModal));
+        viewQuoteCartMobileButton.addEventListener('click', () => {
+            hideMobileMenu(); // Close mobile menu first
+            openModal(quoteCartModal);
+        });
+        closeQuoteCartModalButton.addEventListener('click', () => closeModal(quoteCartModal));
+        window.addEventListener('click', (event) => {
+            if (event.target === quoteCartModal) {
+                closeModal(quoteCartModal);
+            }
+        });
+
+        proceedToOrderButton.addEventListener('click', () => {
+            closeModal(quoteCartModal);
+            openModal(orderFormModal);
+        });
+
+        clearQuoteCartButton.addEventListener('click', clearQuoteCart);
+
+
+        // --- Order Management (Client-Side Mock) ---
+        const startOrderButton = document.getElementById('start-order-button');
+        const closeOrderModalButton = document.getElementById('close-order-modal');
+        const orderForm = document.getElementById('order-form');
+        const orderConfirmationMessage = document.getElementById('order-confirmation-message');
+
+        // This event listener was missing, causing the "Begin Your Order" button to not open the modal
+        document.querySelector('a[href="#order-form-modal"]').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor link behavior
+            openModal(orderFormModal);
+            orderConfirmationMessage.classList.add('hidden'); // Hide previous confirmation
+            orderForm.reset(); // Reset form fields
+        });
+
+        closeOrderModalButton.addEventListener('click', () => closeModal(orderFormModal));
+        window.addEventListener('click', (event) => {
+            if (event.target === orderFormModal) {
+                closeModal(orderFormModal);
+            }
+        });
+
+        orderForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerPhone = document.getElementById('customer-phone').value;
+            const shippingAddress = document.getElementById('shipping-address').value;
+
+            // Basic client-side validation
+            if (!customerName || !customerEmail || !customerPhone || !shippingAddress) {
+                orderConfirmationMessage.classList.remove('hidden');
+                orderConfirmationMessage.classList.remove('bg-green-100', 'text-green-800');
+                orderConfirmationMessage.classList.add('bg-red-100', 'text-red-800');
+                orderConfirmationMessage.innerHTML = `<p class="font-semibold">Please fill in all required fields.</p>`;
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(customerEmail)) {
+                orderConfirmationMessage.classList.remove('hidden');
+                orderConfirmationMessage.classList.remove('bg-green-100', 'text-green-800');
+                orderConfirmationMessage.classList.add('bg-red-100', 'text-red-800');
+                orderConfirmationMessage.innerHTML = `<p class="font-semibold">Please enter a valid email address.</p>`;
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Simulate order submission
+            console.log('Order Request Submitted:', {
+                customerName,
+                customerEmail,
+                customerPhone,
+                shippingAddress,
+                quoteCartItems: quoteCart // Send the actual cart items
+            });
+
+            // Show success message
+            orderConfirmationMessage.classList.remove('hidden');
+            orderConfirmationMessage.classList.remove('bg-red-100', 'text-red-800');
+            orderConfirmationMessage.classList.add('bg-green-100', 'text-green-800');
+            orderConfirmationMessage.innerHTML = `<p class="font-semibold">Thank you for your order request!</p><p>We have received your details and will contact you shortly to finalize your order.</p>`;
+            showNotification('Order request submitted successfully!', 'success');
+
+
+            // In a real application, you would send this data to a backend (e.g., using fetch API)
+            // Example: fetch('/api/orders', { method: 'POST', body: JSON.stringify(orderData) });
+
+            orderForm.reset(); // Clear the form
+            clearQuoteCart(); // Clear the cart after submitting the order request
+        });
+
+        // --- Testimonial Slider Logic ---
+        const testimonials = [
+            {
+                quote: "EBB Bridesmaids made finding dresses for my bridal party an absolute dream! The quality is exceptional and the styles are simply breathtaking.",
+                author: "Sarah J.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e6e6/8b4513?text=SJ" /* Placeholder for avatar */
+            },
+            {
+                quote: "The 'Grace' A-Line Gown was perfect for my bridesmaids. They all looked stunning and felt comfortable all day. The process was seamless!",
+                author: "Jessica L.",
+                rating: 5,
+                image: "https://placehold.co/100x100/e6f0e6/8b4513?text=JL"
+            },
+            {
+                quote: "Fantastic customer service and beautiful designs. Highly recommend EBB for your bridal party needs. They truly care about your vision.",
+                author: "Maria P.",
+                rating: 4,
+                image: "https://placehold.co/100x100/e6e6f0/8b4513?text=MP"
+            },
+            {
+                quote: "We ordered the 'Dreamy Flowy Chiffon' dresses, and they were exactly what we envisioned for our outdoor wedding. So light and elegant!",
+                author: "Chloe R.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e6f0/8b4513?text=CR"
+            },
+            {
+                quote: "The attention to detail and the range of sizes made everyone feel included and beautiful. EBB is simply the best!",
+                author: "Olivia M.",
+                rating: 5,
+                image: "https://placehold.co/100x100/f0e0f0/8b4513?text=OM"
+            }
+        ];
+
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const prevTestimonialButton = document.getElementById('prev-testimonial');
+        const nextTestimonialButton = document.getElementById('next-testimonial');
+        let currentTestimonialIndex = 0;
+
+        function displayTestimonials() {
+            testimonialContainer.innerHTML = ''; // Clear current testimonials
+
+            testimonials.forEach((testimonial, index) => {
+                const testimonialItemDiv = document.createElement('div');
+                testimonialItemDiv.classList.add('testimonial-item', 'bg-white', 'p-8', 'rounded-xl', 'shadow-md', 'text-center', 'flex-shrink-0');
+                testimonialItemDiv.setAttribute('tabindex', '0'); // Make testimonial focusable
+                testimonialItemDiv.setAttribute('role', 'group'); // Indicate it's a group of content
+                testimonialItemDiv.setAttribute('aria-roledescription', 'testimonial');
+                testimonialItemDiv.setAttribute('aria-label', `Testimonial from ${testimonial.author}, rated ${testimonial.rating} out of 5 stars.`);
+
+
+                if (index === currentTestimonialIndex) {
+                    testimonialItemDiv.classList.add('active'); // Add active class for fade-in
+                } else {
+                    testimonialItemDiv.style.display = 'none'; // Hide non-current testimonials
+                }
+
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += `<i class="fas fa-star ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}" aria-hidden="true"></i>`;
+                }
+
+                testimonialItemDiv.innerHTML = `
+                    <img src="${testimonial.image}" alt="Avatar of ${testimonial.author}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-[#B8860B] shadow-md" loading="lazy">
+                    <p class="text-xl italic mb-4 text-gray-700 leading-relaxed">"${testimonial.quote}"</p>
+                    <div class="text-2xl mb-2" role="img" aria-label="${testimonial.rating} out of 5 stars">${stars}</div>
+                    <p class="text-lg font-semibold text-gray-800">- ${testimonial.author}</p>
+                `;
+                testimonialContainer.appendChild(testimonialItemDiv);
+            });
+            updateTestimonialDisplay(); // Ensure correct item is shown initially
+        }
+
+        function showNextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        function showPrevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonialDisplay();
+        }
+
+        function updateTestimonialDisplay() {
+            const items = testimonialContainer.querySelectorAll('.testimonial-item');
+            items.forEach((item, index) => {
+                if (index === currentTestimonialIndex) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.add('active'), 10); // Add active class after display block
+                } else {
+                    item.classList.remove('active'); // Remove active class first
+                    item.addEventListener('transitionend', function handler() {
+                        item.style.display = 'none';
+                        item.removeEventListener('transitionend', handler);
+                    }, { once: true });
+                }
+            });
+        }
+
+        prevTestimonialButton.addEventListener('click', showPrevTestimonial);
+        nextTestimonialButton.addEventListener('click', showNextTestimonial);
+
+        // Initial display of testimonials
+        displayTestimonials();
+        // Set up auto-slide for testimonials
+        setInterval(showNextTestimonial, 7000); // Change testimonial every 7 seconds
+
+        // Initialize quote cart display on load
+        updateQuoteCartDisplay();
+
+    </script>
+</body>
+</html>

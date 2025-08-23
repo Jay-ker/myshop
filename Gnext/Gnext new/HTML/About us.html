@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GNext Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF6509;
+        }
+
+        .logo span {
+            color: #FF6509;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FF6509;
+        }
+
+        .get-quote-btn {
+            background: #FF6509;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background0.3s;
+        }
+
+        .get-quote-btn:hover {
+            background: #E05F00;
+        }
+
+        .hero-section {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('images/picture3-Aboutus.jpg'); /* <- your gallery photo here */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 150px 20px 80px;
+    margin-top: 70px;
+}
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #FF6509;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: #FF6509;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .company-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+
+        .mission-vision-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 50px;
+            padding: 5px;
+        }
+
+        .tab-btn {
+            padding: 15px 40px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: #FF6509;
+            color: white;
+        }
+
+        .mission-vision-content {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .vision-icon, .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .vision-icon i, .mission-icon i {
+            font-size: 2rem;
+            color: #FF6509;
+        }
+
+        .vision-content h3, .mission-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .vision-statement {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            border-left: 4px solid #FF6509;
+            background: #f8fafc;
+            font-style: italic;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .value-card:nth-child(odd) .value-icon {
+            background: #e0f2fe;
+        }
+
+        .value-card:nth-child(even) .value-icon {
+            background: #fef3e2;
+        }
+
+        .value-icon i {
+            font-size: 1.8rem;
+        }
+
+        .value-card:nth-child(odd) .value-icon i {
+            color: #FF6509;
+        }
+
+        .value-card:nth-child(even) .value-icon i {
+            color: #f59e0b;
+        }
+
+        .value-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .expertise-section {
+            background: white;
+        }
+
+        .expertise-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .expertise-card {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .expertise-card:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .expertise-card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .why-choose-section {
+            background: #f8fafc;
+        }
+
+        .why-choose-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .feature-card:nth-child(1) .feature-icon {
+            background: #e0f2fe;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: #fef3e2;
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: #f0fdf4;
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: #fef2f2;
+        }
+
+        .feature-card:nth-child(5) .feature-icon {
+            background: #f3e8ff;
+        }
+
+        .feature-card:nth-child(6) .feature-icon {
+            background: #ecfdf5;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+        }
+
+        .feature-card:nth-child(1) .feature-icon i { color: #FF6509; }
+        .feature-card:nth-child(2) .feature-icon i { color: #f59e0b; }
+        .feature-card:nth-child(3) .feature-icon i { color: #10b981; }
+        .feature-card:nth-child(4) .feature-icon i { color: #FF6509; }
+        .feature-card:nth-child(5) .feature-icon i { color: #8b5cf6; }
+        .feature-card:nth-child(6) .feature-icon i { color: #059669; }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #FF6509;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FF6509;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #FF6509;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .values-grid,
+            .expertise-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">GNext<span>®</span><br><small style="font-size: 14px; color: #666;">Technologies</small></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About us.html" class="active">About Us</a></li>
+                <li><a href="Team.html">Team</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact us.html">Contact Us</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="Get a quote.html" class="get-quote-btn">Get a Quote</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>About GNext Technologies</h1>
+            <p>Leading the way in innovative IT solutions and digital transformation</p>
+        </div>
+    </section>
+
+    <!-- About Our Company -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">About Our Company</h2>
+            <p class="company-description">
+                GNext Technologies is a leading IT solutions provider specializing in innovative software development, 
+                digital transformation, and comprehensive IT services. Our mission is to empower organizations with 
+                cutting-edge technology solutions that drive efficiency, enhance performance, and enable growth.
+            </p>
+            <p class="company-description">
+                With a proven track record of delivering high-quality projects, we are committed to exceeding our 
+                clients' expectations and providing exceptional value.
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Mission & Vision -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Mission & Vision</h2>
+            
+            <div class="mission-vision-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showVision()">Vision</button>
+                    <button class="tab-btn" onclick="showMission()">Mission</button>
+                </div>
+            </div>
+
+            <div id="vision-content" class="mission-vision-content">
+                <div class="vision-content">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <div class="vision-statement">
+                        "To be a trusted brand in delivering IT solutions, driving innovation and transformation 
+                        for businesses and organizations worldwide."
+                    </div>
+                </div>
+            </div>
+
+            <div id="mission-content" class="mission-vision-content" style="display: none;">
+                <div class="mission-content">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <div class="vision-statement">
+                        "To empower organizations with cutting-edge technology solutions that drive efficiency, 
+                        enhance performance, and enable sustainable growth through innovative IT services and 
+                        digital transformation."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Core Values -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 50px;">
+                These principles guide our work and define how we deliver exceptional solutions to our clients.
+            </p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>Committing to the highest quality standards in every project we undertake, ensuring superior results.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnership</h3>
+                    <p>Building strong, lasting relationships with our clients through trust and mutual success.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Continuously pushing boundaries and embracing new technologies to deliver cutting-edge solutions.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>Working together as a team to achieve shared goals and create exceptional outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Expertise -->
+    <section class="section expertise-section">
+        <div class="container">
+            <h2 class="section-title">Industry Expertise</h2>
+            <p class="expertise-intro">
+                GNext Technologies has extensive experience working across various industries.
+            </p>
+            
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3>Education</h3>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3>Healthcare</h3>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3>FinTech</h3>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3>Manufacturing</h3>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3>InsurTech</h3>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3>Government</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose GNext Technologies -->
+    <section class="section why-choose-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose GNext Technologies?</h2>
+            <p class="why-choose-intro">
+                We combine technical expertise, industry knowledge, and a client-focused approach to deliver 
+                exceptional solutions.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Proven Track Record</h3>
+                    <p>Demonstrated success in delivering high-quality IT projects on time and within budget.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Client-Centric Approach</h3>
+                    <p>A strong focus on understanding and meeting the unique needs of each client.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Innovative Solutions</h3>
+                    <p>Leveraging the latest technologies to provide cutting-edge solutions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Experienced Team</h3>
+                    <p>A dedicated team of experts with deep industry knowledge and technical skills.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Commitment to Excellence</h3>
+                    <p>Unwavering commitment to delivering excellence in every project.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Reliable Security</h3>
+                    <p>Advanced security measures to protect your data and ensure business continuity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="color: #FF6509; margin-bottom: 20px;">
+                    GNext<span style="color: #FF6509;">®</span><br>
+                    <small style="font-size: 14px; color: #9ca3af;">Technologies</small>
+                </div>
+                <p style="color: #d1d5db; line-height: 1.6;">
+                    To be a trusted brand in delivering IT solutions, driving innovation and transformation 
+                    for businesses and organizations worldwide.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About us.html">About Us</a></li>
+                    <li><a href="Team.html">Our Team</a></li>
+                    <li><a href="Projects.html">Projects</a></li>
+                    <li><a href="Contact us.html">Contact Us</a></li>
+                    <li><a href="get-a-quote.html">Get a Quote</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Custom Software Development</a></li>
+                    <li><a href="#">Digital Transformation</a></li>
+                    <li><a href="#">IT Consulting</a></li>
+                    <li><a href="#">Mobile and Web Development</a></li>
+                    <li><a href="#">Data Analytics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> #5 J.A Mailaya, Abuja, Nigeria</p>
+                    <p><i class="fas fa-envelope"></i> info@gnexttech.net</p>
+                    <p><i class="fas fa-phone"></i> +234 806 974 3921</p>
+                    <p><i class="fas fa-phone"></i> +234 806 981 1543</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 GNext Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showVision() {
+            document.getElementById('vision-content').style.display = 'block';
+            document.getElementById('mission-content').style.display = 'none';
+            
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs[0].classList.add('active');
+            tabs[1].classList.remove('active');
+        }
+
+        function showMission() {
+            document.getElementById('vision-content').style.display = 'none';
+            document.getElementById('mission-content').style.display = 'block';
+            
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs[0].classList.remove('active');
+            tabs[1].classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links (only for anchor links on same page)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Set active navigation link
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'index.html';
+            
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                const linkPage = linkPath.split('/').pop();
+                
+                // Remove active classes
+                link.classList.remove('active');
+                
+                // Check if this is the current page
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

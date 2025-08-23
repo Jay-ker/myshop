@@ -1,0 +1,99 @@
+        /* Custom CSS foƒr GNext Technologies */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #222;
+        }
+        /* Custom orange color from screenshots */
+        .text-gnext-orange { color: #FF6B00; }
+        .bg-gnext-orange { background-color: #FF6B00; }
+        .hover\:bg-gnext-dark-orange:hover { background-color: #E05F00; }
+        .border-gnext-orange { border-color: #FF6B00; }
+
+        /* Custom light purple/pink from backgrounds */
+        .bg-gnext-light-purple { background-color: #F8F0FF; } /* A light purple/pink shade */
+        .text-gnext-light-purple { color: #F8F0FF; }
+
+        /* Hero section background pattern */
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4H6v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zM48 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 0v-4h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 12v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 60px 60px;
+        }
+
+        /* About section tab active state */
+        .about-tab.active {
+            border-bottom: 2px solid #FF6B00;
+            color: #FF6B00;
+            font-weight: 600;
+        }
+
+        /* Project filter button active state */
+        .project-filter-button.active {
+            background-color: #FF6B00;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.3);
+        }
+
+        /* General card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Specific styles for hero images with curved design */
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 120%; /* Aspect ratio for portrait images */
+            overflow: hidden;
+            border-radius: 50% 50% 0 0 / 10% 10% 0 0; /* Top curves */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50% 50% 0 0 / 10% 10% 0 0; /* Apply curves to image itself */
+        }
+        /* Specific styling for the hero section background to match the screenshot */
+        #home.hero-section {
+            background-color: #F8F0FF; /* Light purple/pink background */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM12 34v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4H6v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4H6v2h4v4h2v-4h4v-2h-4zM48 12v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM24 0v-4h-2v4h-4v2h4v4h2V6h4V4h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 12v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4zm0 18v-4h-2v4H-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 60px 60px;
+        }
+
+        /* Header curved bottom at edges */
+        header {
+            border-bottom-left-radius: 0 0 50px 0; /* No top-left or top-right radius, 50px bottom-left */
+            border-bottom-right-radius: 0 0 0 50px; /* No top-left or top-right radius, 50px bottom-right */
+            overflow: hidden; /* Ensures content doesn't overflow the curve */
+        }
+
+        /* Keyframes for the pulse animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.2;
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Projects - GNext Technologies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans text-gray-900 bg-gray-50">
+
+  <!-- HEADER / NAVBAR -->
+  <header class="header fixed top-0 w-full bg-white shadow z-50 transition duration-300">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-blue-700">GNext Technologies</h1>
+      <nav class="space-x-6">
+        <a href="index.html" class="hover:text-blue-700">Home</a>
+        <a href="About us.html" class="hover:text-blue-700">About Us</a>
+        <a href="Team.html" class="hover:text-blue-700">Team</a>
+        <a href="Projects.html" class="text-blue-700 font-semibold">Projects</a>
+        <a href="Contact us.html" class="hover:text-blue-700">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative h-[500px] flex items-center justify-center text-center text-white overflow-hidden" 
+      style="margin-top:70px;">
+      
+      <!-- Dark Background with Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-900"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);"></div>
+      
+      <!-- Floating Service Icons Background -->
+      <div class="absolute inset-0">
+          <!-- Cloud Computing Icon -->
+          <div class="absolute top-20 left-16 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-blue-400">
+                  <path d="M60 30c-2.2 0-4.2.6-6 1.5C52.5 26.5 47.5 24 42 24c-8.3 0-15 6.7-15 15 0 1.1.1 2.1.3 3.1C24.5 43.1 22 46.3 22 50c0 5.5 4.5 10 10 10h28c4.4 0 8-3.6 8-8 0-4.4-3.6-8-8-8z"/>
+                  <circle cx="25" cy="35" r="3"/>
+                  <circle cx="35" cy="28" r="2"/>
+                  <circle cx="45" cy="32" r="2.5"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">Cloud<br/>Computing</div>
+          </div>
+          
+          <!-- AI & Machine Learning Icon -->
+          <div class="absolute top-32 right-20 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite; animation-delay: -2s;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-purple-400">
+                  <circle cx="40" cy="25" r="8"/>
+                  <circle cx="20" cy="45" r="6"/>
+                  <circle cx="60" cy="45" r="6"/>
+                  <circle cx="30" cy="65" r="5"/>
+                  <circle cx="50" cy="65" r="5"/>
+                  <path d="M32 25L26 45M48 25L54 45M20 51L30 59M60 51L50 59M35 65H45" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">AI & Machine<br/>Learning</div>
+          </div>
+          
+          <!-- Database Icon -->
+          <div class="absolute bottom-32 left-24 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite; animation-delay: -4s;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-green-400">
+                  <ellipse cx="40" cy="20" rx="25" ry="8"/>
+                  <path d="M15 20v15c0 4.4 11.2 8 25 8s25-3.6 25-8V20"/>
+                  <path d="M15 35v15c0 4.4 11.2 8 25 8s25-3.6 25-8V35"/>
+                  <path d="M15 50v10c0 4.4 11.2 8 25 8s25-3.6 25-8V50"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">Database<br/>Management</div>
+          </div>
+          
+          <!-- Mobile Development Icon -->
+          <div class="absolute bottom-20 right-16 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-orange-400">
+                  <rect x="25" y="10" width="30" height="50" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <rect x="30" y="18" width="20" height="30" fill="currentColor" opacity="0.3"/>
+                  <circle cx="40" cy="52" r="2"/>
+                  <line x1="30" y1="15" x2="50" y2="15" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">Mobile<br/>Development</div>
+          </div>
+          
+          <!-- Security Icon -->
+          <div class="absolute top-40 left-1/3 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite; animation-delay: -2s;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-red-400">
+                  <path d="M40 15L25 22v18c0 9.3 6.4 18 15 20 8.6-2 15-10.7 15-20V22L40 15z"/>
+                  <circle cx="40" cy="35" r="5"/>
+                  <path d="M40 40v8" stroke="white" stroke-width="2"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">Cyber<br/>Security</div>
+          </div>
+          
+          <!-- Analytics Icon -->
+          <div class="absolute top-28 left-1/2 opacity-10 transition-all duration-300 hover:opacity-30 hover:scale-110" style="animation: float 6s ease-in-out infinite; animation-delay: -4s;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="currentColor" class="text-yellow-400">
+                  <rect x="20" y="50" width="8" height="20"/>
+                  <rect x="32" y="40" width="8" height="30"/>
+                  <rect x="44" y="30" width="8" height="40"/>
+                  <rect x="56" y="35" width="8" height="35"/>
+                  <circle cx="40" cy="20" r="3"/>
+                  <path d="M40 23L24 54M40 23L36 44M40 23L48 34M40 23L60 38" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+              </svg>
+              <div class="text-center mt-2 text-xs opacity-60">Data<br/>Analytics</div>
+          </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="relative z-10 max-w-4xl mx-auto px-6">
+          <h2 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Our Projects</h2>
+          <div class="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
+          <p class="text-xl md:text-2xl text-gray-200 font-light">
+              Innovative solutions that drive real-world impact
+          </p>
+      </div>
+      
+      <!-- Service Categories Grid -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-4 justify-center max-w-6xl px-4">
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-blue-300">Cloud Solutions</span>
+          </div>
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-purple-300">AI & ML</span>
+          </div>
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-green-300">Database Management</span>
+          </div>
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-orange-300">Mobile Apps</span>
+          </div>
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-red-300">Security</span>
+          </div>
+          <div class="rounded-lg px-4 py-2 backdrop-blur-sm bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
+              <span class="text-sm font-medium text-yellow-300">Analytics</span>
+          </div>
+      </div>
+      
+      <!-- Subtle Grid Pattern Overlay -->
+      <div class="absolute inset-0 opacity-5">
+          <div class="w-full h-full" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+      </div>
+  </section>
+
+  <style>
+  @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+  }
+  </style>
+  <!-- INTRO WRITE-UP -->
+  <section class="container mx-auto px-4 py-12 text-center">
+    <h2 class="text-3xl font-bold mb-4">Featured Projects</h2>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Discover how GNext Technologies is reshaping industries through innovative digital solutions. 
+      Our portfolio showcases transformative projects that drive real business impact.
+    </p>
+  </section>
+
+  <!-- FILTER BUTTONS -->
+  <section class="container mx-auto px-4 py-10 text-center">
+    <div class="space-x-4">
+      <button class="filter-btn active px-4 py-2 bg-blue-600 text-white rounded">All Projects</button>
+      <button class="filter-btn px-4 py-2 bg-gray-200 rounded hover:bg-blue-100">Web</button>
+      <button class="filter-btn px-4 py-2 bg-gray-200 rounded hover:bg-blue-100">Mobile</button>
+      <button class="filter-btn px-4 py-2 bg-gray-200 rounded hover:bg-blue-100">Enterprise</button>
+    </div>
+  </section>
+
+  <!-- PROJECT CARDS -->
+  <section class="container mx-auto grid md:grid-cols-3 gap-6 px-4 py-10">
+    <!-- Project 1 -->
+    <div class="project-card bg-white rounded-lg shadow p-4" data-project="0" data-category="mobile">
+      <div class="project-image">
+        <img src="images/pristine-BA9qqFB_.jpg" alt="Mobile Banking Platform" class="h-48 w-full object-cover rounded">
+      </div>
+      <h3 class="mt-4 font-semibold text-xl">Mobile Banking Platform</h3>
+      <p class="text-sm text-gray-600">Secure and user-friendly mobile banking solution.</p>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card bg-white rounded-lg shadow p-4" data-project="1" data-category="web">
+      <div class="project-image">
+        <img src="images/situation_room-Bc9Ddv24.jpg" alt="Election Monitoring System" class="h-48 w-full object-cover rounded">
+      </div>
+      <h3 class="mt-4 font-semibold text-xl">Election Monitoring System</h3>
+      <p class="text-sm text-gray-600">Real-time monitoring and reporting for elections.</p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card bg-white rounded-lg shadow p-4" data-project="2" data-category="software">
+      <div class="project-image">
+        <img src="images/pristine-BA9qqFB_.jpg" alt="Savings & Loan Management" class="h-48 w-full object-cover rounded">
+      </div>
+      <h3 class="mt-4 font-semibold text-xl">Savings & Loan Management</h3>
+      <p class="text-sm text-gray-600">A system to manage savings and loans for cooperatives.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-300 py-12">
+    <div class="container mx-auto grid md:grid-cols-4 gap-10 px-6">
+
+      <!-- Logo & Motto -->
+      <div>
+        <h2 class="text-xl font-bold text-white mb-2">GNext Technologies</h2>
+        <p class="italic text-gray-400 mb-4">...trusted solution</p>
+        <p class="text-sm text-gray-400">
+          To be a trusted brand in delivering IT solutions, driving innovation and 
+          transformation for businesses and organizations worldwide.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="About us.html" class="hover:text-white">About Us</a></li>
+          <li><a href="Team.html" class="hover:text-white">Our Team</a></li>
+          <li><a href="Projects.html" class="hover:text-white">Projects</a></li>
+          <li><a href="Contact us.html" class="hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-3">Our Services</h3>
+        <ul class="space-y-2">
+          <li>Custom Software Development</li>
+          <li>Digital Transformation</li>
+          <li>IT Consulting</li>
+          <li>Mobile and Web Development</li>
+          <li>Data Analytics</li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-3">Contact Us</h3>
+        <p class="text-sm">#5 J A Mailaya, Abuja, Nigeria</p>
+        <p class="text-sm">info@gnexttech.net</p>
+        <p class="text-sm">+234 806 974 3921</p>
+        <p class="text-sm">+234 806 981 1543</p>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+      &copy; 2025 GNext Technologies. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Project filtering functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('bg-blue-600', 'text-white', 'active'));
+        btn.classList.add('bg-blue-600', 'text-white', 'active');
+
+        const filterText = btn.textContent.toLowerCase();
+
+        projectCards.forEach(card => {
+          if (filterText.includes('all projects')) {
+            card.style.display = 'block';
+          } else if (filterText.includes('web') && card.dataset.category === 'web') {
+            card.style.display = 'block';
+          } else if (filterText.includes('mobile') && card.dataset.category === 'mobile') {
+            card.style.display = 'block';
+          } else if (filterText.includes('enterprise') && card.dataset.category === 'software') {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+      } else {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+      }
+    });
+  </script>
+</body>
+</html>

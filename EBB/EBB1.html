@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBB Bridesmaids Gallery & Dresses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 2rem; border-radius: 0.5rem; width: 90%; max-width: 800px; }
+    .close-button { cursor: pointer; font-size: 1.5rem; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Dresses/Products Section -->
+<section id="dresses" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Our Exquisite Dress Collection</h2>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="dress-filter-button bg-[#B8860B] text-white py-3 px-8 rounded-full hover:bg-[#A0780A] transition shadow-lg text-lg" data-category="all">All Styles</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="A-Line">A-Line</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Mermaid">Mermaid</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Flowy">Flowy</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Short">Short</button>
+    </div>
+
+    <!-- Grid -->
+    <div id="dresses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Dress Details Modal -->
+<div id="dress-details-modal" class="modal flex">
+  <div class="modal-content relative">
+    <span id="close-dress-modal" class="close-button absolute top-2 right-4">&times;</span>
+    <div id="dress-modal-content"></div>
+  </div>
+</div>
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-12">A Glimpse of Our Bridesmaids</h2>
+    <p class="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+      Explore our gallery to see real bridal parties adorned in EBB Bridesmaids dresses.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <img src="images/IMG_2866.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2867.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2888.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2890.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2992.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2895.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2900.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2893.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6 text-center">
+  &copy; 2025 EBB Bridesmaids. All rights reserved.
+</footer>
+
+<!-- JavaScript -->
+<script>
+const dresses = [
+  { name: "Elegant A-Line", category: "A-Line", image: "images/IMG_2866.PNG", desc: "Beautiful A-Line dress for all figures." },
+  { name: "Classic Mermaid", category: "Mermaid", image: "images/IMG_2867.PNG", desc: "Curve-hugging mermaid silhouette." },
+  { name: "Flowy Grace", category: "Flowy", image: "images/IMG_2888.PNG", desc: "Light, flowing fabric perfect for comfort." },
+  { name: "Chic Short", category: "Short", image: "images/IMG_2890.PNG", desc: "Stylish short dress for modern bridesmaids." },
+  { name: "Glamorous Mermaid", category: "Mermaid", image: "images/IMG_2992.PNG", desc: "Stunning sequin mermaid dress." },
+  { name: "Romantic A-Line", category: "A-Line", image: "images/IMG_2895.PNG", desc: "Timeless romance in A-Line cut." },
+];
+
+function renderDresses(category = "all") {
+  const grid = document.getElementById('dresses-grid');
+  grid.innerHTML = "";
+  dresses
+    .filter(d => category === "all" || d.category === category)
+    .forEach(d => {
+      const item = document.createElement('div');
+      item.className = "cursor-pointer";
+      item.innerHTML = `
+        <img src="${d.image}" alt="${d.name}" class="rounded shadow w-full h-64 object-cover mb-2">
+        <h3 class="font-semibold text-lg">${d.name}</h3>
+        <p class="text-gray-600 text-sm">${d.category}</p>`;
+      item.onclick = () => showDressModal(d);
+      grid.appendChild(item);
+    });
+}
+
+function showDressModal(dress) {
+  document.getElementById('dress-modal-content').innerHTML = `
+    <img src="${dress.image}" alt="${dress.name}" class="w-full md:w-1/2 rounded-lg object-cover">
+    <div class="mt-4 md:mt-0 md:ml-4">
+      <h2 class="text-2xl font-bold mb-2">${dress.name}</h2>
+      <p class="mb-4">${dress.desc}</p>
+    </div>`;
+  document.getElementById('dress-details-modal').style.display = 'flex';
+}
+
+// Close modal
+document.getElementById('close-dress-modal').onclick = () => {
+  document.getElementById('dress-details-modal').style.display = 'none';
+};
+
+// Filter buttons
+document.querySelectorAll('.dress-filter-button').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.dress-filter-button').forEach(b => b.classList.remove('bg-[#B8860B]', 'text-white'));
+    btn.classList.add('bg-[#B8860B]', 'text-white');
+    renderDresses(btn.dataset.category);
+  };
+});
+
+// Init
+renderDresses();
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBB Bridesmaids Gallery & Dresses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 2rem; border-radius: 0.5rem; width: 90%; max-width: 800px; }
+    .close-button { cursor: pointer; font-size: 1.5rem; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Dresses/Products Section -->
+<section id="dresses" class="py-20 px-4 md:px-8 lg:px-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-14">Our Exquisite Dress Collection</h2>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="dress-filter-button bg-[#B8860B] text-white py-3 px-8 rounded-full hover:bg-[#A0780A] transition shadow-lg text-lg" data-category="all">All Styles</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="A-Line">A-Line</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Mermaid">Mermaid</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Flowy">Flowy</button>
+      <button class="dress-filter-button bg-gray-300 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-400 transition shadow-md text-lg" data-category="Short">Short</button>
+    </div>
+
+    <!-- Grid -->
+    <div id="dresses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Dress Details Modal -->
+<div id="dress-details-modal" class="modal flex">
+  <div class="modal-content relative">
+    <span id="close-dress-modal" class="close-button absolute top-2 right-4">&times;</span>
+    <div id="dress-modal-content"></div>
+  </div>
+</div>
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-20 px-4 md:px-8 lg:px-20 bg-white">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-12">A Glimpse of Our Bridesmaids</h2>
+    <p class="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+      Explore our gallery to see real bridal parties adorned in EBB Bridesmaids dresses.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <img src="images/IMG_2866.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2867.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2888.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2890.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2992.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2895.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2900.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+      <img src="images/IMG_2893.PNG" alt="Gallery dress" class="rounded-lg shadow-xl w-full h-auto object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6 text-center">
+  &copy; 2025 EBB Bridesmaids. All rights reserved.
+</footer>
+
+<!-- JavaScript -->
+<script>
+const dresses = [
+  { name: "Elegant A-Line", category: "A-Line", image: "images/IMG_2866.PNG", desc: "Beautiful A-Line dress for all figures." },
+  { name: "Classic Mermaid", category: "Mermaid", image: "images/IMG_2867.PNG", desc: "Curve-hugging mermaid silhouette." },
+  { name: "Flowy Grace", category: "Flowy", image: "images/IMG_2888.PNG", desc: "Light, flowing fabric perfect for comfort." },
+  { name: "Chic Short", category: "Short", image: "images/IMG_2890.PNG", desc: "Stylish short dress for modern bridesmaids." },
+  { name: "Glamorous Mermaid", category: "Mermaid", image: "images/IMG_2992.PNG", desc: "Stunning sequin mermaid dress." },
+  { name: "Romantic A-Line", category: "A-Line", image: "images/IMG_2895.PNG", desc: "Timeless romance in A-Line cut." },
+];
+
+function renderDresses(category = "all") {
+  const grid = document.getElementById('dresses-grid');
+  grid.innerHTML = "";
+  dresses
+    .filter(d => category === "all" || d.category === category)
+    .forEach(d => {
+      const item = document.createElement('div');
+      item.className = "cursor-pointer";
+      item.innerHTML = `
+        <img src="${d.image}" alt="${d.name}" class="rounded shadow w-full h-64 object-cover mb-2">
+        <h3 class="font-semibold text-lg">${d.name}</h3>
+        <p class="text-gray-600 text-sm">${d.category}</p>`;
+      item.onclick = () => showDressModal(d);
+      grid.appendChild(item);
+    });
+}
+
+function showDressModal(dress) {
+  document.getElementById('dress-modal-content').innerHTML = `
+    <img src="${dress.image}" alt="${dress.name}" class="w-full md:w-1/2 rounded-lg object-cover">
+    <div class="mt-4 md:mt-0 md:ml-4">
+      <h2 class="text-2xl font-bold mb-2">${dress.name}</h2>
+      <p class="mb-4">${dress.desc}</p>
+    </div>`;
+  document.getElementById('dress-details-modal').style.display = 'flex';
+}
+
+// Close modal
+document.getElementById('close-dress-modal').onclick = () => {
+  document.getElementById('dress-details-modal').style.display = 'none';
+};
+
+// Filter buttons
+document.querySelectorAll('.dress-filter-button').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.dress-filter-button').forEach(b => b.classList.remove('bg-[#B8860B]', 'text-white'));
+    btn.classList.add('bg-[#B8860B]', 'text-white');
+    renderDresses(btn.dataset.category);
+  };
+});
+
+// Init
+renderDresses();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nigerian Online Test Site</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4">
+
+  <h1 class="text-3xl font-bold mb-4 text-green-700">Test</h1>
+
+  <!-- Subject Selection -->
+  <div id="subject-selection" class="space-y-2">
+    <p class="text-lg">Select a subject to start:</p>
+    <button onclick="startTest('English')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">English</button>
+    <button onclick="startTest('Mathematics')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Mathematics</button>
+    <button onclick="startTest('Civic')" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Civic Education</button>
+  </div>
+
+  <!-- Quiz Container -->
+  <div id="quiz-container" class="hidden max-w-xl w-full mt-6 space-y-4">
+    <h2 id="quiz-title" class="text-2xl font-semibold"></h2>
+    <form id="quiz-form" class="space-y-4"></form>
+    <button onclick="submitQuiz()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit Answers</button>
+  </div>
+
+  <!-- Result + Return -->
+  <div id="result-container" class="hidden mt-6 text-center space-y-4">
+    <div id="result" class="text-xl font-medium text-green-800"></div>
+    <button onclick="goBack()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Return to Subjects</button>
+  </div>
+
+<script>
+// Questions database
+const questions = {
+  English: [
+    {
+      question: "Which of these is a noun?",
+      options: ["Quickly", "Lagos", "Beautiful", "Run"],
+      answer: "Lagos"
+    },
+    {
+      question: "Choose the correct tense: She _____ to school every day.",
+      options: ["go", "goes", "going", "gone"],
+      answer: "goes"
+    }
+  ],
+  Mathematics: [
+    {
+      question: "What is 5 + 7?",
+      options: ["10", "11", "12", "13"],
+      answer: "12"
+    },
+    {
+      question: "Which of these is an even number?",
+      options: ["3", "5", "8", "9"],
+      answer: "8"
+    }
+  ],
+  Civic: [
+    {
+      question: "Who is the President of Nigeria (as of 2025)?",
+      options: ["Bola Ahmed Tinubu", "Muhammadu Buhari", "Goodluck Jonathan", "Olusegun Obasanjo"],
+      answer: "Bola Ahmed Tinubu"
+    },
+    {
+      question: "What colour represents peace in the Nigerian flag?",
+      options: ["White", "Green", "Blue", "Red"],
+      answer: "White"
+    }
+  ]
+};
+
+let currentSubject = '';
+
+function startTest(subject) {
+  currentSubject = subject;
+  document.getElementById('subject-selection').classList.add('hidden');
+  document.getElementById('quiz-container').classList.remove('hidden');
+  document.getElementById('result-container').classList.add('hidden');
+  document.getElementById('quiz-title').textContent = subject + " Test";
+
+  const quizForm = document.getElementById('quiz-form');
+  quizForm.innerHTML = '';
+
+  questions[subject].forEach((q, index) => {
+    const questionHtml = `
+      <div>
+        <p class="font-medium mb-2">${index + 1}. ${q.question}</p>
+        ${q.options.map(option => `
+          <label class="block">
+            <input type="radio" name="question${index}" value="${option}" class="mr-2">
+            ${option}
+          </label>
+        `).join('')}
+      </div>
+    `;
+    quizForm.innerHTML += questionHtml;
+  });
+}
+
+function submitQuiz() {
+  const quizForm = document.getElementById('quiz-form');
+  let score = 0;
+
+  questions[currentSubject].forEach((q, index) => {
+    const selected = quizForm.querySelector(`input[name="question${index}"]:checked`);
+    if (selected && selected.value === q.answer) {
+      score++;
+    }
+  });
+
+  document.getElementById('quiz-container').classList.add('hidden');
+  const result = document.getElementById('result');
+  result.textContent = `You scored ${score} out of ${questions[currentSubject].length}`;
+  document.getElementById('result-container').classList.remove('hidden');
+}
+
+function goBack() {
+  document.getElementById('result-container').classList.add('hidden');
+  document.getElementById('subject-selection').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>

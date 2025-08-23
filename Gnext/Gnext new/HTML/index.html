@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNext Technologies - Innovative Digital Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (assuming similar aesthetic to screenshots, using Inter for body and Poppins for headings) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style src="Gnxttrial.CSS">
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
+        <nav class="w-full px-0 md:px-6 py-3 md:py-4 flex flex-wrap items-center justify-between gap-3 bg-white border-b border-gray-100 shadow-sm md:rounded-full ">
+            <div class="flex items-center px-4 md:px-0">
+                <a aria-current="page" class="active" href="/" data-discover="true">
+                    <!-- Updated logo src to a placeholder -->
+                    <img alt="GNext Technologies Logo" class="w-20 h-auto object-contain" src="images/logo-CC_1xyRT.png">
+                </a>
+            </div>
+            <button id="mobile-menu-toggle-button" class="md:hidden p-3 mr-4 rounded-xl bg-gradient-to-r from-[#FF6509] to-[#ff7a2f]
+                shadow-lg hover:shadow-xl hover:shadow-orange-200/20
+                transition-all duration-500 ease-in-out z-50 group" aria-label="Toggle menu">
+                <div class="w-6 h-4 relative flex flex-col justify-between overflow-hidden">
+                    <span class="w-full h-[2px] bg-white rounded-full transform transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]
+                        w-4 ml-2"></span>
+                    <span class="w-full h-[2px] bg-white rounded-full transform transition-all duration-300 ease-in-out
+                        w-6"></span>
+                    <span class="w-full h-[2px] bg-white rounded-full transform transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]
+                        w-5 ml-1"></span>
+                </div>
+            </button>
+            <div id="mobile-menu" class="fixed md:static top-0 left-0 w-full md:w-auto h-full md:h-auto
+            bg-white md:bg-transparent shadow-[5px_0_25px_0_rgba(0,0,0,0.1)] md:shadow-none
+            transform transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]
+            -translate-x-full opacity-0 md:translate-x-0 md:opacity-100
+            flex flex-col md:flex-row items-start md:items-center gap- md:gap-8
+            pt-28 md:pt-0 px-8 md:px-0 z-40
+            before:content-[''] before:absolute before:top-0 before:left-0 before:w-1 before:h-full
+            before:bg-gradient-to-b before:from-[#FF6509] before:to-[#0D49AB] before:rounded-r md:before:hidden">
+            <div class="absolute top-6 left-8 md:hidden flex items-center gap-4">
+                <!-- Updated logo src to a placeholder -->
+                <img alt="GNext Technologies Logo" class="w-40 h-15 object-contain" src="images/logo-CC_1xyRT.png">
+                <div class="h-8 w-[1px] bg-gradient-to-b from-[#FF6509] to-[#0D49AB]"></div>
+            </div>
+            <a aria-current="page" class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-[#FF6509] font-medium" href="index.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">Home</span>
+            </a>
+            <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="About us.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">About Us</span>
+            </a>
+            <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="Team.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">Team</span>
+            </a>
+            <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="Projects.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">Projects</span>
+            </a>
+            <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="Contact us.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">Contact Us</span>
+            </a>
+            <a class="group w-full md:w-auto relative px-2 py-3 transition-all duration-300 flex items-center gap-2 rounded-xl hover:bg-[#FF6509]/5 text-gray-800 md:text-gray-600 hover:text-[#FF6509]" href="Get a quote.html" data-discover="true">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#FF6509] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 md:hidden"></span>
+                <span class="relative">Get a Quote</span>
+            </a>
+            <div class="mt-8 md:hidden">
+                <div class="flex items-center gap-4 px-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#FF6509]/10 flex items-center justify-center text-[#FF6509] hover:bg-[#FF6509] hover:text-white transition-all duration-300">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-[#FF6509]/10 flex items-center justify-center text-[#FF6509] hover:bg-[#FF6509] hover:text-white transition-all duration-300">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+                    <div class="fixed inset-0 backdrop-blur-sm bg-black/40 z-30 md:hidden transition-all duration-500
+                opacity-0 pointer-events-none"></div>
+            <div class="hidden md:flex items-center">
+                <a class="group w-full md:w-auto px-6 py-2.5 bg-[#FF6509] text-white font-medium rounded-full
+                    transform hover:scale-105 transition-all duration-300 ease-in-out hover:text-white
+                    shadow-lg hover:shadow-xl hover:shadow-[#FF6509]/20
+                    relative overflow-hidden" href="Get a quote.html" data-discover="true">
+                    <span class="relative z-10">Get a Quote</span>
+                    <div class="absolute inset-0 bg-[#FF6509] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative hero-section py-20 md:py-32 overflow-hidden">
+        <!-- New div for the pulsating background effect -->
+        <div class="absolute -top-6 -left-6 w-4/5 h-4/5 bg-[#FF6509]/10 rounded-full filter blur-3xl animate-pulse"></div>
+
+        <div class="absolute inset-0 hero-pattern opacity-30"></div>
+        <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <!-- Left Content -->
+            <div class="lg:w-1/2 text-center lg:text-left z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
+                    Transform your business with cutting-edge <span class="text-gnext-orange">technology solutions.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-xl mx-auto lg:mx-0">
+                    Our expert team delivers innovative digital solutions to help you succeed in today's competitive landscape.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="contact-us.html" class="inline-block bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        Contact Us
+                    </a>
+                    <a href="about-us.html" class="inline-block border border-gnext-orange text-gnext-orange hover:bg-gnext-orange hover:text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <!-- Right Image with curved design (now a single image) -->
+            <div class="lg:w-1/2 flex justify-center items-center z-10">
+                <div class="hero-image-container w-full max-w-[300px] md:max-w-[400px] lg:max-w-[500px]">
+                    <img src="images/hero-CtB2t9E5.png" alt="Business Team" class="transform hover:scale-102 transition-transform duration-500" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-20 mt-16 md:mt-24">
+            <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-project-diagram text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">25+</p>
+                    <p class="text-gray-600">Projects Completed</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-handshake text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">98%</p>
+                    <p class="text-gray-600">Client Satisfaction</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-hourglass-half text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">10+</p>
+                    <p class="text-gray-600">Years Experience</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-users text-4xl text-gnext-orange mb-3"></i>
+                    <p class="text-4xl font-bold text-gray-900">10</p>
+                    <p class="text-gray-600">Team Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-6 md:px-12 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <!-- Left Content -->
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">About <span class="text-gnext-orange">GNext Technologies</span></h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    GNext Technologies is a leading IT solutions provider specializing in innovative software development,
+                    digital transformation, and comprehensive IT services. Our mission is to empower organizations with
+                    cutting-edge technology solutions that drive efficiency, enhance performance, and enable growth.
+                </p>
+                <!-- Tabs for Vision, Mission, Values -->
+                <div class="flex justify-center lg:justify-start space-x-8 mb-8 border-b border-gray-200">
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300 active" data-tab="vision">Vision</button>
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300" data-tab="mission">Mission</button>
+                    <button class="about-tab py-3 px-4 text-lg text-gray-600 hover:text-gnext-orange transition duration-300" data-tab="values">Values</button>
+                </div>
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <p id="vision-content" class="text-lg leading-relaxed text-gray-700 active-tab-content">
+                        To be a trusted brand in delivering IT solutions, driving innovation and transformation for
+                        businesses and organizations worldwide.
+                    </p>
+                    <p id="mission-content" class="text-lg leading-relaxed text-gray-700 hidden">
+                        Our mission is to empower businesses with cutting-edge technology, fostering growth and efficiency
+                        through exceptional software development, digital transformation, and IT consulting services.
+                    </p>
+                    <p id="values-content" class="text-lg leading-relaxed text-gray-700 hidden">
+                        We uphold integrity, innovation, client-centricity, excellence, and teamwork as our core values,
+                        guiding every interaction and solution we provide.
+                    </p>
+                </div>
+            </div>
+            <!-- Right Image -->
+            <div class="lg:w-1/2">
+                <img src="images/aboutus-fK-GLdj9.jpg" alt="About GNext Technologies" class="rounded-xl shadow-2xl w-full h-auto object-cover transform hover:scale-102 transition-transform duration-500" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="py-20 px-6 md:px-12 lg:px-20 bg-gray-50 hero-pattern">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Why Choose <span class="text-gnext-orange">GNext Technologies?</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                We combine technical expertise, industry knowledge, and a client-focused approach to deliver
+                exceptional solutions that drive business success.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-chart-line text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Proven Track Record</h3>
+                    <p class="text-gray-600">
+                        Demonstrated success in delivering high-quality IT projects on time and within budget.
+                    </p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-handshake text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Client-Centric Approach</h3>
+                    <p class="text-gray-600">
+                        A strong focus on understanding and meeting the unique needs of each client.
+                    </p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-lightbulb text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Innovative Solutions</h3>
+                    <p class="text-gray-600">
+                        Leveraging the latest technologies to provide cutting-edge solutions.
+                    </p>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-users-cog text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Experienced Team</h3>
+                    <p class="text-gray-600">
+                        A team of highly skilled and certified professionals dedicated to your success.
+                    </p>
+                </div>
+                <!-- Feature Card 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-star text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Commitment to Excellence</h3>
+                    <p class="text-gray-600">
+                        Delivering superior quality and exceeding expectations in every project.
+                    </p>
+                </div>
+                <!-- Feature Card 6 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-shield-alt text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Reliable Security</h3>
+                    <p class="text-gray-600">
+                        Implementing robust security measures to protect your data and systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Featured Projects Section -->
+    <section id="projects" class="py-20 px-6 md:px-12 lg:px-20 bg-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Featured <span class="text-gnext-orange">Projects</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                Discover how GNext Technologies is reshaping industries through innovative digital solutions.
+                Our portfolio showcases transformative projects that drive real business impact.
+            </p>
+
+            <!-- Project Category Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="project-filter-button bg-gnext-orange text-white py-3 px-8 rounded-full hover:bg-gnext-dark-orange transition duration-300 shadow-lg text-lg active" data-category="all">All Projects</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="web-applications">Web Applications</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="mobile-solutions">Mobile Solutions</button>
+                <button class="project-filter-button bg-gray-200 text-gray-800 py-3 px-8 rounded-full hover:bg-gray-300 transition duration-300 shadow-md text-lg" data-category="enterprise-software">Enterprise Software</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="mobile-solutions">
+                    <img src="images/pristine-BA9qqFB_.jpg" alt="Mobile and Internet Banking Platform" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Mobile and Internet Banking Platform</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Revolutionizing digital banking with a state-of-the-art platform for Pristine Divitis
+                            Microfinance Bank Ltd. Empowering customers with seamless, secure, and intuitive banking experiences.
+                        </p>
+                        <a href="projects.html" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="web-applications">
+                    <img src="images/situation_room-Bc9Ddv24.jpg" alt="Situation Room (Election Monitoring System)" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Situation Room (Election Monitoring System)</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            Pioneering electoral transparency through cutting-edge monitoring technology. A comprehensive
+                            digital solution that transformed election tracking for Hon. Ikenga Ugochinyere's campaign.
+                        </p>
+                        <a href="project.html" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect" data-category="enterprise-software">
+                    <img src="images/situation_room-Bc9Ddv24.jpg" alt="Hospital Management System" class="w-full h-64 object-cover" loading="lazy">
+                    <div class="p-6 text-left">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Hospital Management System</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            A comprehensive digital solution designed to streamline and automate the management of
+                            hospital operations, patient records, and healthcare services for improved efficiency and patient care.
+                        </p>
+                        <a href="project.html" class="text-gnext-orange font-semibold hover:underline transition duration-300">
+                            Explore Project <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                                            </div>
+                </div>
+            </div>
+            <button class="mt-16 inline-block bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-4 px-10 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                View All Projects <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Our Expertise Section -->
+    <section id="expertise" class="py-20 px-6 md:px-12 lg:px-20 bg-gray-50 hero-pattern">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Our <span class="text-gnext-orange">Expertise</span></h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                Empowering organizations with cutting-edge technology solutions that drive
+                efficiency, enhance performance, and enable growth.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Expertise Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-laptop-code text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Custom Software Development</h3>
+                    <p class="text-gray-600">
+                        Tailored software solutions to meet specific business needs with agile development methodologies.
+                    </p>
+                </div>
+                <!-- Expertise Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Digital Transformation</h3>
+                    <p class="text-gray-600">
+                        Comprehensive digital strategy and implementation including cloud migration,
+                        IoT integration, and AI-driven solutions.
+                    </p>
+                </div>
+                <!-- Expertise Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-cogs text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">IT Consulting</h3>
+                    <p class="text-gray-600">
+                        Expert advice on IT infrastructure, cybersecurity, system optimization and
+                        strategic planning.
+                    </p>
+                </div>
+                <!-- Expertise Card 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-mobile-alt text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Mobile & Web Development</h3>
+                    <p class="text-gray-600">
+                        Development of responsive, user-friendly mobile apps, websites, e-commerce
+                        platforms and web applications.
+                    </p>
+                </div>
+                <!-- Expertise Card 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-database text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Data Analytics</h3>
+                    <p class="text-gray-600">
+                        Advanced analytics solutions for data-driven decision-making with visualization
+                        tools and predictive analytics.
+                    </p>
+                </div>
+                <!-- Expertise Card 6 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center">
+                    <div class="bg-gnext-light-purple rounded-full p-4 mb-6">
+                        <i class="fas fa-chart-pie text-4xl text-gnext-orange"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Business Intelligence</h3>
+                    <p class="text-gray-600">
+                        Comprehensive reporting systems and analytics tools to transform your data into
+                        actionable insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Section -->
+    <section id="contact" class="relative bg-gnext-light-purple py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+        <div class="absolute inset-0 hero-pattern opacity-30"></div>
+        <div class="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+            <!-- Left Content -->
+            <div class="lg:w-1/2 text-center lg:text-left z-10">
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-gray-900">
+                    Let's discuss how our tailored technology solutions can help your business grow.
+                </h2>
+                <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-xl mx-auto lg:mx-0">
+                    Schedule a free consultation today.
+                </p>
+                <a href="contact.html" class="inline-block bg-gnext-orange hover:bg-gnext-dark-orange text-white font-semibold py-3 px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Schedule a Call <i class="fas fa-phone-alt ml-2"></i>
+                </a>
+                            </div>
+            <!-- Right Image -->
+            <div class="lg:w-1/2 flex justify-center lg:justify-end z-10">
+                <img src="images/calltoaction-DwWKeitx.png" alt="Customer Service Representative" class="rounded-xl shadow-2xl w-full max-w-md md:max-w-lg h-auto object-cover transform hover:scale-102 transition-transform duration-500" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6 md:px-12 lg:px-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Column 1: Logo & Tagline -->
+            <div>
+                <a href="index.html" class="flex items-center space-x-2 mb-4">
+                    <img src="https://placehold.co/40x40/FF6B00/FFFFFF?text=GN" alt="GNext Technologies Logo" class="h-10 w-10 rounded-full shadow-sm" loading="lazy">
+                    <span class="text-2xl font-bold">GNext <span class="text-gnext-orange">Technologies</span></span>
+                </a>
+                                <p class="text-gray-400 text-sm mb-4">...a trusted solution</p>
+                <p class="text-gray-400 text-sm">
+                    To be a trusted brand in delivering IT solutions, driving innovation and
+                    transformation for businesses and organizations worldwide.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="index.html" class="hover:text-gnext-orange transition duration-300">Home</a></li>
+                    <li><a href="About us.html" class="hover:text-gnext-orange transition duration-300">About Us</a></li>
+                    <li><a href="projects.html" class="hover:text-gnext-orange transition duration-300">Projects</a></li>
+                    <li><a href="expertise" class="hover:text-gnext-orange transition duration-300">Expertise</a></li>
+                    <li><a href="Contact us.html" class="hover:text-gnext-orange transition duration-300">Contact Us</a></li>
+                                    </ul>
+            </div>
+
+            <!-- Column 3: Our Services -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Our Services</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Custom Software Development</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Digital Transformation</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">IT Consulting</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Mobile & Web Development</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Data Analytics</a></li>
+                    <li><a href="#" class="hover:text-gnext-orange transition duration-300">Business Intelligence</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact Us -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                <address class="not-italic space-y-2 text-gray-400">
+                    <p><i class="fas fa-map-marker-alt mr-2 text-gnext-orange"></i> #5 J.A Mailaya, Abuja, Nigeria</p>
+                    <p><i class="fas fa-envelope mr-2 text-gnext-orange"></i> <a href="mailto:info@gnexttech.net" class="hover:underline">info@gnexttech.net</a></p>
+                    <p><i class="fas fa-phone-alt mr-2 text-gnext-orange"></i> <a href="tel:+2348069743921" class="hover:underline">+234 806 974 3921</a></p>
+                    <p><i class="fas fa-phone-alt mr-2 text-gnext-orange"></i> <a href="tel:+2348069811543" class="hover:underline">+234 806 981 1543</a></p>
+                </address>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+            &copy; 2025 GNext Technologies. All rights reserved.
+        </div>
+    </footer>    
+    <script src="Gnxttrial.js"></script>
+</body>
+</html>

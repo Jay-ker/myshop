@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - GNext Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .logo span {
+            color: #ef4444;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ef4444;
+        }
+
+        .get-quote-btn {
+            background: #ef4444;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .get-quote-btn:hover {
+            background: #dc2626;
+        }
+
+        .hero-section {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(239, 68, 68, 0.8)), 
+                url('images/Team1_files/hero_1-4f2TUeKH.jpg');  /* Replace with your gallery file */
+    color: white;
+    text-align: center;
+    padding: 150px 20px 80px;
+    margin-top: 70px;
+    background-size: cover;
+    background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3b82f6;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: #ef4444;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: #666;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px 30px 30px;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .linkedin-icon {
+            color: #0077b5;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .linkedin-icon:hover {
+            color: #005582;
+        }
+
+/* Team member specific background images */
+.team-card:nth-child(1) .team-image {
+    background-image: url('images/Team1_files/victor-CVyqaWbY.jpg');
+}
+
+.team-card:nth-child(2) .team-image {
+    background-image: url('images/Team1_files/wombo-CPASKu0J.jpg');
+}
+
+.team-card:nth-child(3) .team-image {
+    background-image: url('images/Team1_files/paul-CYAdChc7.jpg');
+}
+
+.team-card:nth-child(4) .team-image {
+    background-image: url('images/Team1_files/felix-XihkeqeW.jpg');
+}
+
+.team-card:nth-child(5) .team-image {
+    background-image: url('images/Team1_files/nosakhare-DH6aZ4ML.jpg');
+}
+
+.team-card:nth-child(6) .team-image {
+    background-image: url('images/Team1_files/graveth-CDnwGdRN.jpg');
+}
+
+.team-card:nth-child(7) .team-image {
+    background-image: url('images/Team1_files/joseph--ElutxKs.jpeg');
+}
+
+.team-card:nth-child(8) .team-image {
+    background-image: url('images/Team1_files/abraham-DQEN349u.png');
+}
+
+.team-card:nth-child(9) .team-image {
+    background-image: url('images/Team1_files/adeniyi-GKsXTSho.jpg');
+}
+        .culture-section {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .culture-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .culture-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ef4444;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .culture-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">GNext<span>®</span><br><small style="font-size: 14px; color: #666;">Technologies</small></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About us.html">About Us</a></li>
+                <li><a href="Team.html" class="active">Team</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact us.html">Contact Us</a></li>
+            </ul>
+            <a href="quote.html" class="get-quote-btn">Get a Quote</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Meet Our Team</h1>
+            <p>The talented individuals behind GNext Technologies' success</p>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Exceptional Team</h2>
+            <p class="section-description">
+                We're a diverse group of passionate individuals committed to delivering innovative technology 
+                solutions. Our expertise spans various domains within technology, allowing us to tackle complex 
+                challenges and create impactful results.
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Dr. Victor Kuluah</div>
+                            <div class="team-role">Chairman GNext Technologies</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Paul Wombo</div>
+                            <div class="team-role">Chief Technology Officer</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Paul Tor</div>
+                            <div class="team-role">Business Analyst/Project Manager</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Felix Ayange</div>
+                            <div class="team-role">Team Lead Frontend</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Nosakhare Ohonba</div>
+                            <div class="team-role">Team Lead Backend</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Ejekwu Graveth</div>
+                            <div class="team-role">Software Developer</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Aduwu Joseph</div>
+                            <div class="team-role">Senior Software Developer</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Abraham Joseph</div>
+                            <div class="team-role">Full stack Engineer</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-overlay">
+                            <div class="team-name">Adeniji Tosin</div>
+                            <div class="team-role">UI/UX Designer</div>
+                            <a href="#" class="linkedin-icon"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Culture -->
+    <section class="section">
+        <div class="container">
+            <div class="culture-section">
+                <h2 class="section-title">Our Culture</h2>
+                <div class="culture-content">
+                    <p>
+                        At GNext Technologies, we foster an environment of innovation, collaboration, and continuous 
+                        learning. We believe in empowering our team members to take ownership of their work and 
+                        contribute ideas that drive our company forward.
+                    </p>
+                    <p>
+                        Our workplace is characterized by mutual respect, open communication, and a shared commitment 
+                        to excellence. We celebrate diversity and believe that different perspectives lead to better 
+                        solutions.
+                    </p>
+                    <p>
+                        We're not just colleagues—we're a community of passionate professionals who support each other 
+                        and work together to achieve exceptional results for our clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="color: #3b82f6; margin-bottom: 20px;">
+                    GNext<span style="color: #ef4444;">®</span><br>
+                    <small style="font-size: 14px; color: #9ca3af;">Technologies</small>
+                </div>
+                <p style="color: #d1d5db; line-height: 1.6;">
+                    To be a trusted brand in delivering IT solutions, driving innovation and transformation 
+                    for businesses and organizations worldwide.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About us.html">About Us</a></li>
+                    <li><a href="Team.html">Our Team</a></li>
+                    <li><a href="Projects.html">Projects</a></li>
+                    <li><a href="Contact us.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="services">Custom Software Development</a></li>
+                    <li><a href="services">Digital Transformation</a></li>
+                    <li><a href="services">IT Consulting</a></li>
+                    <li><a href="services">Mobile and Web Development</a></li>
+                    <li><a href="services">Data Analytics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> #5 J A Mailafia, Abuja, Nigeria</p>
+                    <p><i class="fas fa-envelope"></i> info@gnexttech.net</p>
+                    <p><i class="fas fa-phone"></i> +234 806 974 3921</p>
+                    <p><i class="fas fa-phone"></i> +234 806 981 1543</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 GNext Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add hover effects to team cards
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
