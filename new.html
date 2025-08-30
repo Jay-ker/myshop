@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddWorks Print - The Xpress Print & Branding Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffd700;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page sections */
+        .page {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home Page */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23f0f0f0" width="1000" height="600"/><circle fill="%23ddd" cx="200" cy="150" r="50"/><rect fill="%23ccc" x="300" y="100" width="200" height="100"/><circle fill="%23bbb" cx="700" cy="200" r="30"/><rect fill="%23aaa" x="100" y="300" width="150" height="80"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .services-preview {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* About Page */
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .about-text h2 {
+            color: #1e3c72;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .about-image {
+            background: #e9ecef;
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+
+        /* Services Page */
+        .services-content {
+            padding: 80px 0;
+        }
+
+        .service-detail {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-detail h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .service-list li {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+        }
+
+        /* Portfolio Page */
+        .portfolio-content {
+            padding: 80px 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            background: #f8f9fa;
+            height: 250px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Page */
+        .contact-content {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+
+        .contact-info {
+            background: #1e3c72;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">AddWorks Print</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                <li><a href="#" class="nav-link" data-page="portfolio">Portfolio</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h1>AddWorks Print</h1>
+                <p>The Xpress Print & Branding Shop - Experts in Branding, Printing, Graphic Design & Videography</p>
+                <a href="#" class="btn" data-page="contact">Get Quote</a>
+            </div>
+        </section>
+
+        <section class="services-preview">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #1e3c72; margin-bottom: 1rem;">Our Services</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #666;">Professional printing and branding solutions for your business</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🖨️</div>
+                        <h3>Printing Services</h3>
+                        <p>High-quality digital and offset printing for all your business needs</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Branding & Design</h3>
+                        <p>Creative branding solutions that make your business stand out</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📐</div>
+                        <h3>Graphic Design</h3>
+                        <p>Professional graphic design for print and digital media</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+                        <h3>Videography</h3>
+                        <p>Professional video production for your marketing needs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>About AddWorks Print</h2>
+                        <p>Welcome to AddWorks Print, Lagos's premier printing and branding shop. We are passionate about delivering exceptional quality and service that exceeds our clients' expectations.</p>
+                        <p>With years of experience in the printing industry, we have built a reputation for excellence in branding, printing, graphic design, and videography. Our team combines creativity with technical expertise to bring your vision to life.</p>
+                        <p>Located in Lagos, Nigeria, we serve businesses of all sizes, from startups to established corporations, helping them create impactful visual communications that drive results.</p>
+                        <a href="#" class="btn" data-page="contact">Work With Us</a>
+                    </div>
+                    <div class="about-image">
+                        <span>Professional Printing Equipment & Design Studio</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 4rem; text-align: center;">
+                    <h3 style="color: #1e3c72; margin-bottom: 2rem; font-size: 2rem;">Why Choose AddWorks Print?</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">⚡</div>
+                            <h3>Express Service</h3>
+                            <p>Fast turnaround times without compromising quality</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">💎</div>
+                            <h3>Premium Quality</h3>
+                            <p>State-of-the-art equipment and premium materials</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🎯</div>
+                            <h3>Expert Team</h3>
+                            <p>Experienced professionals dedicated to your success</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">💰</div>
+                            <h3>Competitive Pricing</h3>
+                            <p>Great value for money with transparent pricing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <section class="services-content">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #1e3c72; margin-bottom: 3rem;">Our Services</h2>
+
+                <div class="service-detail">
+                    <h3>🖨️ Printing Services</h3>
+                    <p>From business cards to large format prints, we handle all your printing needs with precision and quality.</p>
+                    <ul class="service-list">
+                        <li>Business Cards & Stationery</li>
+                        <li>Flyers & Brochures</li>
+                        <li>Posters & Banners</li>
+                        <li>Corporate Reports</li>
+                        <li>Booklets & Catalogs</li>
+                        <li>Wedding Invitations</li>
+                    </ul>
+                </div>
+
+                <div class="service-detail">
+                    <h3>🎨 Branding & Identity</h3>
+                    <p>Create a strong brand identity that resonates with your target audience and sets you apart from competitors.</p>
+                    <ul class="service-list">
+                        <li>Logo Design</li>
+                        <li>Brand Identity Development</li>
+                        <li>Brand Guidelines</li>
+                        <li>Corporate Identity Packages</li>
+                        <li>Brand Consultation</li>
+                        <li>Rebranding Services</li>
+                    </ul>
+                </div>
+
+                <div class="service-detail">
+                    <h3>📐 Graphic Design</h3>
+                    <p>Professional graphic design services for both print and digital applications that capture your brand essence.</p>
+                    <ul class="service-list">
+                        <li>Marketing Materials</li>
+                        <li>Social Media Graphics</li>
+                        <li>Package Design</li>
+                        <li>Advertisement Design</li>
+                        <li>Layout Design</li>
+                        <li>Digital Graphics</li>
+                    </ul>
+                </div>
+
+                <div class="service-detail">
+                    <h3>🎬 Videography</h3>
+                    <p>Professional video production services to showcase your business and engage your audience effectively.</p>
+                    <ul class="service-list">
+                        <li>Corporate Videos</li>
+                        <li>Product Showcases</li>
+                        <li>Event Coverage</li>
+                        <li>Promotional Videos</li>
+                        <li>Social Media Content</li>
+                        <li>Video Editing Services</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page">
+        <section class="portfolio-content">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #1e3c72; margin-bottom: 1rem;">Our Portfolio</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Showcasing our best work and creative solutions</p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <span>Corporate Branding Project<br>Logo & Identity Design</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Wedding Invitation Suite<br>Elegant Print Design</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Restaurant Menu Design<br>Food & Beverage Branding</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Business Card Collection<br>Professional Stationery</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Event Poster Series<br>Large Format Printing</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Product Packaging<br>Brand Identity & Design</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Corporate Video<br>Professional Videography</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Social Media Campaign<br>Digital Graphics Suite</span>
+                    </div>
+                    <div class="portfolio-item">
+                        <span>Annual Report Design<br>Corporate Publication</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="btn" data-page="contact">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact-content">
+            <div class="container">
+                <h2 style="text-align: center; font-size: 2.5rem; color: #1e3c72; margin-bottom: 1rem;">Get In Touch</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #666;">Ready to start your project? Let's discuss your needs</p>
+
+                <div class="contact-grid">
+                    <div class="contact-form">
+                        <h3 style="color: #1e3c72; margin-bottom: 1.5rem;">Send us a Message</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Needed</label>
+                                <select id="service" name="service" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 1rem;">
+                                    <option value="">Select a service</option>
+                                    <option value="printing">Printing Services</option>
+                                    <option value="branding">Branding & Identity</option>
+                                    <option value="graphic-design">Graphic Design</option>
+                                    <option value="videography">Videography</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Project Details</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="width: 100%; margin: 0;">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3 style="margin-bottom: 2rem;">Contact Information</h3>
+                        
+                        <div class="contact-item">
+                            <i>📍</i>
+                            <div>
+                                <strong>Address</strong><br>
+                                Lagos, Nigeria
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i>📞</i>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +234 (0) 123 456 7890
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i>✉️</i>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@addworksprint.com
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i>🕒</i>
+                            <div>
+                                <strong>Business Hours</strong><br>
+                                Mon - Fri: 8:00 AM - 6:00 PM<br>
+                                Sat: 9:00 AM - 4:00 PM
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem;">
+                            <h4 style="margin-bottom: 1rem;">Follow Us</h4>
+                            <div class="social-links">
+                                <a href="https://instagram.com/addworks_print" target="_blank">📷</a>
+                                <a href="https://facebook.com/AddworksPrint" target="_blank">👍</a>
+                                <a href="https://tiktok.com/@addworks_print" target="_blank">🎵</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AddWorks Print. All rights reserved. | The Xpress Print & Branding Shop</p>
+            <div class="social-links">
+                <a href="https://instagram.com/addworks_print" target="_blank">📷</a>
+                <a href="https://facebook.com/AddworksPrint" target="_blank">👍</a>
+                <a href="https://tiktok.com/@addworks_print" target="_blank">🎵</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksContainer = document.getElementById('nav-links');
+
+        // Page navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = e.target.getAttribute('data-page');
+                showPage(targetPage);
+                
+                // Update active nav link
+                navLinks.forEach(nl => nl.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Close mobile menu
+                navLinksContainer.classList.remove('active');
+            });
+        });
+
+        // Handle buttons with data-page attributes
+        document.addEventListener('click', (e) => {
+            if (e.target.hasAttribute('data-page') && !e.target.classList.contains('nav-link')) {
+                e.preventDefault();
+                const targetPage = e.target.getAttribute('data-page');
+                showPage(targetPage);
+                
+                // Update active nav link
+                navLinks.forEach(nl => nl.classList.remove('active'));
+                document.querySelector(`[data-page="${targetPage}"].nav-link`).classList.add('active');
+            }
+        });
+
+        function showPage(pageId) {
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Mobile menu toggle
+        mobileMenu.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Portfolio item clicks
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                alert('Portfolio item details would be displayed here. This could open a modal or navigate to a detailed view.');
+            });
+        });
+
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'

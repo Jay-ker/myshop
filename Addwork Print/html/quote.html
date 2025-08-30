@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quote Builder - AddWorks Print</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Quote Builder</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="quote-builder">
+    <h2>Get an Instant Estimate</h2>
+    <form id="quoteForm">
+      <label for="service">Select Service:</label>
+      <select id="service" required>
+        <option value="">-- Choose --</option>
+        <option value="fabricBox">Fabric Box Branding</option>
+        <option value="vehicleWrap">Vehicle Wrapping</option>
+        <option value="weddingStationery">Wedding Stationery</option>
+        <option value="signage">Signage & Banners</option>
+        <option value="carrierBags">Carrier Bags & Packaging</option>
+      </select>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" min="1" required>
+
+      <label for="finish">Finish/Material:</label>
+      <select id="finish">
+        <option value="standard">Standard</option>
+        <option value="premium">Premium</option>
+        <option value="luxury">Luxury</option>
+      </select>
+
+      <button type="submit">Calculate Quote</button>
+      <p id="quoteResult"></p>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 AddWorks Print</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
